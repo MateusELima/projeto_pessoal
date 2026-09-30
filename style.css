@@ -7,23 +7,31 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+
     background: #111827;
+
     color: white;
+
     min-height: 100vh;
 }
 
 
 .container {
     width: 92%;
+
     max-width: 950px;
+
     margin: auto;
+
     padding: 35px 0;
 }
 
 
 h1 {
     text-align: center;
+
     font-size: 36px;
+
     margin-bottom: 10px;
 }
 
@@ -40,14 +48,18 @@ h3 {
 
 .subtitulo {
     text-align: center;
+
     color: #9ca3af;
+
     margin-bottom: 30px;
 }
 
 
 .textoAjuda {
     color: #9ca3af;
+
     margin-bottom: 20px;
+
     line-height: 1.5;
 }
 
@@ -59,8 +71,11 @@ h3 {
 .card,
 .historico {
     background: #1f2937;
+
     padding: 25px;
+
     border-radius: 12px;
+
     margin-bottom: 25px;
 }
 
@@ -71,8 +86,11 @@ h3 {
 
 label {
     display: block;
+
     margin-top: 15px;
+
     margin-bottom: 6px;
+
     font-weight: bold;
 }
 
@@ -80,11 +98,17 @@ label {
 input,
 select {
     width: 100%;
+
     padding: 12px;
+
     border: 1px solid #374151;
+
     border-radius: 7px;
+
     background: #111827;
+
     color: white;
+
     font-size: 16px;
 }
 
@@ -92,6 +116,7 @@ select {
 input:focus,
 select:focus {
     outline: none;
+
     border-color: #22c55e;
 }
 
@@ -102,12 +127,19 @@ select:focus {
 
 button {
     border: none;
+
     border-radius: 7px;
+
     background: #22c55e;
+
     color: white;
+
     font-weight: bold;
+
     font-size: 15px;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
@@ -119,47 +151,59 @@ button:hover {
 
 .btnRegistrar {
     width: 100%;
+
     padding: 15px;
-    margin-top: 25px;
+
+    margin-top: 15px;
 }
 
 
 .btnAzul {
     width: 100%;
+
     padding: 12px;
+
     margin-top: 10px;
+
     background: #2563eb;
 }
 
 
 .btnNovo {
     padding: 12px 18px;
+
     white-space: nowrap;
 }
 
 
 .btnEditar {
     background: #2563eb;
+
     padding: 8px 12px;
 }
 
 
 .btnExcluir {
     background: #dc2626;
+
     padding: 8px 12px;
 }
 
 
 .btnCancelar {
     width: 100%;
+
     padding: 12px;
+
     margin-top: 10px;
+
     background: #6b7280;
 }
 
 
 .btnLimpar {
     padding: 10px 15px;
+
     background: #dc2626;
 }
 
@@ -170,6 +214,7 @@ button:hover {
 
 .linha-exercicio {
     display: flex;
+
     gap: 10px;
 }
 
@@ -185,11 +230,13 @@ button:hover {
 
 .ultimoTreino {
     margin-top: 15px;
+
     padding: 16px;
 
     background: #111827;
 
     border: 1px solid #374151;
+
     border-left: 4px solid #2563eb;
 
     border-radius: 8px;
@@ -198,22 +245,29 @@ button:hover {
 
 .ultimoTreinoTitulo {
     color: #60a5fa;
+
     font-weight: bold;
+
     font-size: 16px;
+
     margin-bottom: 12px;
 }
 
 
 .ultimoTreinoData {
     color: #9ca3af;
+
     font-size: 14px;
+
     margin-bottom: 12px;
 }
 
 
 .ultimoTreinoSerie {
     display: flex;
+
     justify-content: space-between;
+
     gap: 10px;
 
     padding: 9px 0;
@@ -229,6 +283,7 @@ button:hover {
 
 .ultimoTreinoVolume {
     margin-top: 12px;
+
     padding-top: 10px;
 
     border-top: 1px solid #374151;
@@ -239,6 +294,7 @@ button:hover {
 
 .semHistorico {
     color: #9ca3af;
+
     font-size: 14px;
 }
 
@@ -253,6 +309,7 @@ button:hover {
     background: #111827;
 
     padding: 20px;
+
     margin-top: 20px;
 
     border-radius: 8px;
@@ -263,7 +320,9 @@ button:hover {
 
 .caixaEdicao button {
     width: 100%;
+
     padding: 12px;
+
     margin-top: 15px;
 }
 
@@ -272,17 +331,42 @@ button:hover {
    SÉRIES
 ========================= */
 
+.cabecalhoSeries {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 20px;
+
+    margin-bottom: 5px;
+}
+
+
+.cabecalhoSeries label {
+    margin: 0;
+}
+
+
+#contadorSeries {
+    color: #9ca3af;
+
+    font-size: 14px;
+}
+
+
 .linhaSerie {
     display: grid;
 
     grid-template-columns:
-        85px 1fr 1fr;
+        80px 1fr 1fr 45px;
 
     gap: 10px;
 
     align-items: end;
 
-    margin-top: 15px;
+    margin-top: 12px;
 
     padding: 15px;
 
@@ -296,15 +380,48 @@ button:hover {
 
 .numeroSerie {
     color: #22c55e;
+
     font-weight: bold;
+
     padding-bottom: 12px;
 }
 
 
 .campoSerie label {
     margin-top: 0;
+
     color: #d1d5db;
+
     font-size: 14px;
+}
+
+
+.btnRemoverSerie {
+    width: 45px;
+
+    height: 43px;
+
+    background: #dc2626;
+
+    font-size: 16px;
+}
+
+
+.btnAdicionarSerie {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 15px;
+
+    background: #374151;
+
+    border: 1px dashed #6b7280;
+}
+
+
+.btnAdicionarSerie:hover {
+    background: #4b5563;
 }
 
 
@@ -351,6 +468,7 @@ button:hover {
 
 .diaSemana h3 {
     color: #22c55e;
+
     margin: 0;
 }
 
@@ -359,6 +477,7 @@ button:hover {
     color: #9ca3af;
 
     margin-top: 5px;
+
     margin-bottom: 15px;
 
     font-weight: bold;
@@ -392,6 +511,7 @@ button:hover {
 
 .acoesExercicio {
     display: flex;
+
     gap: 7px;
 }
 
@@ -412,6 +532,7 @@ button:hover {
 
 .botoesBackup button {
     padding: 14px;
+
     min-height: 55px;
 }
 
@@ -460,14 +581,17 @@ button:hover {
     z-index: 1000;
 
     left: 0;
+
     top: 0;
 
     width: 100%;
+
     height: 100%;
 
     background: rgba(0, 0, 0, 0.75);
 
     align-items: center;
+
     justify-content: center;
 
     padding: 20px;
@@ -476,6 +600,7 @@ button:hover {
 
 .modalConteudo {
     width: 100%;
+
     max-width: 500px;
 
     background: #1f2937;
@@ -488,7 +613,9 @@ button:hover {
 
 .modalConteudo button:not(.btnCancelar) {
     width: 100%;
+
     padding: 12px;
+
     margin-top: 20px;
 }
 
@@ -522,6 +649,7 @@ button:hover {
 
 table {
     width: 100%;
+
     border-collapse: collapse;
 }
 
@@ -549,6 +677,7 @@ th {
 
     .container {
         width: 94%;
+
         padding: 20px 0;
     }
 
@@ -571,27 +700,46 @@ th {
 
     .btnNovo {
         width: 100%;
+
         margin-top: 10px;
     }
 
 
     .linhaSerie {
         grid-template-columns:
-            60px 1fr 1fr;
+            55px 1fr 1fr 40px;
 
-        gap: 7px;
+        gap: 6px;
 
         padding: 10px;
     }
 
 
     .numeroSerie {
-        font-size: 13px;
+        font-size: 12px;
+
+        padding-bottom: 13px;
     }
 
 
     .campoSerie label {
-        font-size: 12px;
+        font-size: 11px;
+    }
+
+
+    .campoSerie input {
+        padding: 10px 6px;
+
+        font-size: 16px;
+    }
+
+
+    .btnRemoverSerie {
+        width: 40px;
+
+        height: 41px;
+
+        padding: 0;
     }
 
 
@@ -613,6 +761,7 @@ th {
     .btnEditar,
     .btnExcluir {
         font-size: 12px;
+
         padding: 7px 9px;
     }
 
@@ -629,6 +778,7 @@ th {
 
     .btnLimpar {
         width: 100%;
+
         margin-top: 15px;
     }
 

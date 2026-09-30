@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Progressão de Carga</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -13,15 +15,28 @@
 <div class="container">
 
     <h1>🏋️ Progressão de Carga</h1>
-    <p class="subtitulo">Organize seus treinos e acompanhe sua evolução.</p>
 
-    <!-- TREINO -->
+    <p class="subtitulo">
+        Organize seus treinos e acompanhe sua evolução.
+    </p>
+
+
+    <!-- =========================
+         MEU TREINO
+    ========================== -->
+
     <div class="card">
 
         <h2>Meu Treino</h2>
 
+
         <label>Dia do treino</label>
-        <select id="diaTreino" onchange="carregarExerciciosDoDia()">
+
+        <select
+            id="diaTreino"
+            onchange="carregarExerciciosDoDia()"
+        >
+
             <option value="segunda">Segunda-feira</option>
             <option value="terca">Terça-feira</option>
             <option value="quarta">Quarta-feira</option>
@@ -29,7 +44,9 @@
             <option value="sexta">Sexta-feira</option>
             <option value="sabado">Sábado</option>
             <option value="domingo">Domingo</option>
+
         </select>
+
 
         <label>Nome do treino</label>
 
@@ -39,6 +56,7 @@
             placeholder="Ex: Peito e Tríceps"
         >
 
+
         <button
             class="btnAzul"
             onclick="salvarNomeTreino()"
@@ -46,9 +64,11 @@
             Salvar nome do treino
         </button>
 
+
         <!-- EXERCÍCIO -->
 
         <label>Exercício</label>
+
 
         <div class="linha-exercicio">
 
@@ -63,7 +83,8 @@
 
         </div>
 
-        <!-- CADASTRO -->
+
+        <!-- CADASTRO DE EXERCÍCIO -->
 
         <div
             id="cadastroExercicio"
@@ -71,6 +92,7 @@
         >
 
             <h3>Novo exercício</h3>
+
 
             <label>Nome</label>
 
@@ -80,9 +102,11 @@
                 placeholder="Ex: Supino Reto"
             >
 
+
             <label>Dia</label>
 
             <select id="diaNovoExercicio">
+
                 <option value="segunda">Segunda-feira</option>
                 <option value="terca">Terça-feira</option>
                 <option value="quarta">Quarta-feira</option>
@@ -90,13 +114,16 @@
                 <option value="sexta">Sexta-feira</option>
                 <option value="sabado">Sábado</option>
                 <option value="domingo">Domingo</option>
+
             </select>
+
 
             <button onclick="cadastrarExercicio()">
                 Cadastrar exercício
             </button>
 
         </div>
+
 
         <!-- SÉRIES -->
 
@@ -106,15 +133,19 @@
             id="series"
             onchange="gerarSeries()"
         >
+
             <option value="1">1 série</option>
             <option value="2">2 séries</option>
             <option value="3" selected>3 séries</option>
             <option value="4">4 séries</option>
             <option value="5">5 séries</option>
             <option value="6">6 séries</option>
+
         </select>
 
+
         <div id="camposSeries"></div>
+
 
         <button
             class="btnRegistrar"
@@ -126,7 +157,9 @@
     </div>
 
 
-    <!-- RESULTADO -->
+    <!-- =========================
+         RESULTADO
+    ========================== -->
 
     <div
         id="resultado"
@@ -134,14 +167,16 @@
     ></div>
 
 
-    <!-- MINHA SEMANA -->
+    <!-- =========================
+         MINHA SEMANA
+    ========================== -->
 
     <div class="card">
 
         <h2>📅 Minha Semana</h2>
 
         <p class="textoAjuda">
-            Aqui você pode editar, mover ou excluir os exercícios da sua ficha.
+            Edite, mova ou exclua exercícios da sua ficha.
         </p>
 
         <div id="fichaSemanal"></div>
@@ -149,7 +184,70 @@
     </div>
 
 
-    <!-- JANELA DE EDIÇÃO -->
+    <!-- =========================
+         BACKUP
+    ========================== -->
+
+    <div class="card">
+
+        <h2>💾 Backup dos dados</h2>
+
+        <p class="textoAjuda">
+            Faça um backup antes de limpar o navegador,
+            formatar ou trocar de celular.
+        </p>
+
+
+        <div class="botoesBackup">
+
+            <button
+                class="btnBackup"
+                onclick="fazerBackup()"
+            >
+                💾 Fazer backup
+            </button>
+
+
+            <button
+                class="btnRestaurar"
+                onclick="selecionarBackup()"
+            >
+                📂 Restaurar backup
+            </button>
+
+
+            <button
+                class="btnTxt"
+                onclick="exportarHistoricoTXT()"
+            >
+                📄 Exportar histórico TXT
+            </button>
+
+        </div>
+
+
+        <!-- Campo escondido para selecionar JSON -->
+
+        <input
+            type="file"
+            id="arquivoBackup"
+            accept=".json,application/json"
+            onchange="restaurarBackup(event)"
+            style="display:none"
+        >
+
+
+        <p class="avisoBackup">
+            O arquivo JSON permite restaurar seus dados.
+            O TXT serve apenas para visualizar seu histórico.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL EDITAR EXERCÍCIO
+    ========================== -->
 
     <div
         id="modalEdicao"
@@ -160,6 +258,7 @@
 
             <h2>✏️ Editar exercício</h2>
 
+
             <label>Nome do exercício</label>
 
             <input
@@ -167,9 +266,11 @@
                 id="editarNomeExercicio"
             >
 
+
             <label>Dia do exercício</label>
 
             <select id="editarDiaExercicio">
+
                 <option value="segunda">Segunda-feira</option>
                 <option value="terca">Terça-feira</option>
                 <option value="quarta">Quarta-feira</option>
@@ -177,11 +278,14 @@
                 <option value="sexta">Sexta-feira</option>
                 <option value="sabado">Sábado</option>
                 <option value="domingo">Domingo</option>
+
             </select>
+
 
             <button onclick="salvarEdicaoExercicio()">
                 Salvar alterações
             </button>
+
 
             <button
                 class="btnCancelar"
@@ -195,7 +299,9 @@
     </div>
 
 
-    <!-- HISTÓRICO -->
+    <!-- =========================
+         HISTÓRICO
+    ========================== -->
 
     <div class="historico">
 
@@ -203,29 +309,43 @@
 
             <h2>📊 Histórico de Treinos</h2>
 
+
             <button
                 class="btnLimpar"
                 onclick="limparHistorico()"
             >
-                Limpar histórico
+                🗑️ Limpar histórico
             </button>
 
         </div>
+
 
         <div class="tabelaContainer">
 
             <table>
 
                 <thead>
+
                     <tr>
+
                         <th>Data</th>
+
                         <th>Dia</th>
+
                         <th>Exercício</th>
+
                         <th>Séries</th>
-                        <th>Repetições / Peso</th>
+
+                        <th>
+                            Repetições / Peso
+                        </th>
+
                         <th>Volume</th>
+
                     </tr>
+
                 </thead>
+
 
                 <tbody id="listaTreinos"></tbody>
 
@@ -237,7 +357,9 @@
 
 </div>
 
-<script src="script.js"></script>
+
+<script src="script.js?v=4"></script>
 
 </body>
+
 </html>

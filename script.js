@@ -1,32 +1,44 @@
 /* =========================================
-   DADOS
+   CARREGAR DADOS
 ========================================= */
 
 let treinos =
-    JSON.parse(localStorage.getItem("treinos")) || [];
+    JSON.parse(
+        localStorage.getItem("treinos")
+    ) || [];
 
 
 let exerciciosSemana =
-    JSON.parse(localStorage.getItem("exerciciosSemana")) || {};
+    JSON.parse(
+        localStorage.getItem("exerciciosSemana")
+    ) || {};
 
 
 let nomesTreinos =
-    JSON.parse(localStorage.getItem("nomesTreinos")) || {};
+    JSON.parse(
+        localStorage.getItem("nomesTreinos")
+    ) || {};
 
 
 
 /* =========================================
-   NOMES DOS DIAS
+   DIAS DA SEMANA
 ========================================= */
 
 const nomesDias = {
 
     segunda: "Segunda-feira",
+
     terca: "Terça-feira",
+
     quarta: "Quarta-feira",
+
     quinta: "Quinta-feira",
+
     sexta: "Sexta-feira",
+
     sabado: "Sábado",
+
     domingo: "Domingo"
 
 };
@@ -34,20 +46,24 @@ const nomesDias = {
 
 
 /* =========================================
-   GARANTIR DIAS
+   PREPARAR DIAS
 ========================================= */
 
 function prepararDias() {
 
-    Object.keys(nomesDias).forEach(function(dia) {
+    Object.keys(nomesDias).forEach(
 
-        if (!exerciciosSemana[dia]) {
+        function(dia) {
 
-            exerciciosSemana[dia] = [];
+            if (!exerciciosSemana[dia]) {
+
+                exerciciosSemana[dia] = [];
+
+            }
 
         }
 
-    });
+    );
 
 }
 
@@ -57,33 +73,42 @@ prepararDias();
 
 
 /* =========================================
-   CADASTRO DE EXERCÍCIO
+   MOSTRAR CADASTRO
 ========================================= */
 
 function mostrarCadastroExercicio() {
 
     const cadastro =
-        document.getElementById("cadastroExercicio");
+        document.getElementById(
+            "cadastroExercicio"
+        );
 
 
     if (cadastro.style.display === "block") {
 
         cadastro.style.display = "none";
 
-    } else {
+    }
+
+    else {
 
         cadastro.style.display = "block";
 
 
         const diaAtual =
-            document.getElementById("diaTreino").value;
+            document.getElementById(
+                "diaTreino"
+            ).value;
 
 
-        document.getElementById("diaNovoExercicio").value =
-            diaAtual;
+        document.getElementById(
+            "diaNovoExercicio"
+        ).value = diaAtual;
 
 
-        document.getElementById("novoExercicio").focus();
+        document.getElementById(
+            "novoExercicio"
+        ).focus();
 
     }
 
@@ -105,28 +130,39 @@ function cadastrarExercicio() {
 
 
     const dia =
-        document.getElementById("diaNovoExercicio").value;
+        document.getElementById(
+            "diaNovoExercicio"
+        ).value;
 
 
     if (nome === "") {
 
-        alert("Digite o nome do exercício.");
+        alert(
+            "Digite o nome do exercício."
+        );
 
         return;
 
     }
 
 
-    const jaExiste =
-        exerciciosSemana[dia].some(function(exercicio) {
+    const existe =
+        exerciciosSemana[dia].some(
 
-            return exercicio.toLowerCase() ===
-                   nome.toLowerCase();
+            function(exercicio) {
 
-        });
+                return (
+                    exercicio.toLowerCase()
+                    ===
+                    nome.toLowerCase()
+                );
+
+            }
+
+        );
 
 
-    if (jaExiste) {
+    if (existe) {
 
         alert(
             "Esse exercício já está cadastrado nesse dia."
@@ -143,15 +179,19 @@ function cadastrarExercicio() {
     salvarExercicios();
 
 
-    document.getElementById("novoExercicio").value = "";
+    document.getElementById(
+        "novoExercicio"
+    ).value = "";
 
 
-    document.getElementById("cadastroExercicio").style.display =
-        "none";
+    document.getElementById(
+        "cadastroExercicio"
+    ).style.display = "none";
 
 
-    document.getElementById("diaTreino").value =
-        dia;
+    document.getElementById(
+        "diaTreino"
+    ).value = dia;
 
 
     carregarExerciciosDoDia();
@@ -160,7 +200,9 @@ function cadastrarExercicio() {
     atualizarFichaSemanal();
 
 
-    alert("Exercício cadastrado com sucesso!");
+    alert(
+        "Exercício cadastrado com sucesso!"
+    );
 
 }
 
@@ -173,8 +215,13 @@ function cadastrarExercicio() {
 function salvarExercicios() {
 
     localStorage.setItem(
+
         "exerciciosSemana",
-        JSON.stringify(exerciciosSemana)
+
+        JSON.stringify(
+            exerciciosSemana
+        )
+
     );
 
 }
@@ -182,17 +229,21 @@ function salvarExercicios() {
 
 
 /* =========================================
-   CARREGAR EXERCÍCIOS DO DIA
+   EXERCÍCIOS DO DIA
 ========================================= */
 
 function carregarExerciciosDoDia() {
 
     const dia =
-        document.getElementById("diaTreino").value;
+        document.getElementById(
+            "diaTreino"
+        ).value;
 
 
     const select =
-        document.getElementById("exercicio");
+        document.getElementById(
+            "exercicio"
+        );
 
 
     select.innerHTML = "";
@@ -205,10 +256,13 @@ function carregarExerciciosDoDia() {
     if (exercicios.length === 0) {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
 
         option.value = "";
+
 
         option.textContent =
             "Nenhum exercício cadastrado";
@@ -216,29 +270,37 @@ function carregarExerciciosDoDia() {
 
         select.appendChild(option);
 
-    } else {
+    }
 
-        exercicios.forEach(function(nome) {
+    else {
 
-            const option =
-                document.createElement("option");
+        exercicios.forEach(
+
+            function(nome) {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
 
-            option.value = nome;
+                option.value = nome;
 
-            option.textContent = nome;
+                option.textContent = nome;
 
 
-            select.appendChild(option);
+                select.appendChild(option);
 
-        });
+            }
+
+        );
 
     }
 
 
-    /* MOSTRAR NOME DO TREINO */
-
-    document.getElementById("nomeTreino").value =
+    document.getElementById(
+        "nomeTreino"
+    ).value =
         nomesTreinos[dia] || "";
 
 }
@@ -252,7 +314,9 @@ function carregarExerciciosDoDia() {
 function salvarNomeTreino() {
 
     const dia =
-        document.getElementById("diaTreino").value;
+        document.getElementById(
+            "diaTreino"
+        ).value;
 
 
     const nome =
@@ -266,65 +330,115 @@ function salvarNomeTreino() {
 
 
     localStorage.setItem(
+
         "nomesTreinos",
-        JSON.stringify(nomesTreinos)
+
+        JSON.stringify(
+            nomesTreinos
+        )
+
     );
 
 
     atualizarFichaSemanal();
 
 
-    alert("Treino salvo!");
+    alert(
+        "Nome do treino salvo!"
+    );
 
 }
 
 
 
 /* =========================================
-   GERAR CAMPOS DAS SÉRIES
+   GERAR SÉRIES
 ========================================= */
 
 function gerarSeries() {
 
     const quantidade =
         parseInt(
-            document.getElementById("series").value
+
+            document.getElementById(
+                "series"
+            ).value
+
         );
 
 
     const container =
-        document.getElementById("camposSeries");
+        document.getElementById(
+            "camposSeries"
+        );
 
 
     container.innerHTML = "";
 
 
-    for (let i = 1; i <= quantidade; i++) {
+    for (
+        let i = 1;
+        i <= quantidade;
+        i++
+    ) {
 
-        const label =
-            document.createElement("label");
-
-
-        label.textContent =
-            `Repetições - Série ${i}`;
-
-
-        const input =
-            document.createElement("input");
+        const linha =
+            document.createElement(
+                "div"
+            );
 
 
-        input.type = "number";
-
-        input.min = "1";
-
-        input.placeholder = "Ex: 12";
-
-        input.className = "repeticaoSerie";
+        linha.className =
+            "linhaSerie";
 
 
-        container.appendChild(label);
+        linha.innerHTML = `
 
-        container.appendChild(input);
+            <div class="numeroSerie">
+
+                Série ${i}
+
+            </div>
+
+
+            <div class="campoSerie">
+
+                <label>
+                    Repetições
+                </label>
+
+                <input
+                    type="number"
+                    min="1"
+                    placeholder="12"
+                    class="repeticaoSerie"
+                >
+
+            </div>
+
+
+            <div class="campoSerie">
+
+                <label>
+                    Peso (kg)
+                </label>
+
+                <input
+                    type="number"
+                    min="0"
+                    step="0.5"
+                    placeholder="30"
+                    class="pesoSerie"
+                >
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            linha
+        );
 
     }
 
@@ -339,22 +453,24 @@ function gerarSeries() {
 function registrarTreino() {
 
     const dia =
-        document.getElementById("diaTreino").value;
+        document.getElementById(
+            "diaTreino"
+        ).value;
 
 
     const exercicio =
-        document.getElementById("exercicio").value;
-
-
-    const carga =
-        parseFloat(
-            document.getElementById("carga").value
-        );
+        document.getElementById(
+            "exercicio"
+        ).value;
 
 
     const quantidadeSeries =
         parseInt(
-            document.getElementById("series").value
+
+            document.getElementById(
+                "series"
+            ).value
+
         );
 
 
@@ -369,65 +485,87 @@ function registrarTreino() {
     }
 
 
-    if (isNaN(carga) || carga < 0) {
-
-        alert("Informe uma carga válida.");
-
-        return;
-
-    }
+    const inputsRepeticoes =
+        document.querySelectorAll(
+            ".repeticaoSerie"
+        );
 
 
-    const inputs =
-        document.querySelectorAll(".repeticaoSerie");
+    const inputsPesos =
+        document.querySelectorAll(
+            ".pesoSerie"
+        );
 
 
     let repeticoes = [];
 
+    let pesos = [];
+
+    let volume = 0;
 
     let valido = true;
 
 
-    inputs.forEach(function(input) {
+    for (
+        let i = 0;
+        i < quantidadeSeries;
+        i++
+    ) {
 
-        const valor =
-            parseInt(input.value);
+        const repeticao =
+            parseInt(
+                inputsRepeticoes[i].value
+            );
 
 
-        if (isNaN(valor) || valor <= 0) {
+        const peso =
+            parseFloat(
+                inputsPesos[i].value
+            );
+
+
+        if (
+            isNaN(repeticao)
+            ||
+            repeticao <= 0
+            ||
+            isNaN(peso)
+            ||
+            peso < 0
+        ) {
 
             valido = false;
 
-        } else {
-
-            repeticoes.push(valor);
+            break;
 
         }
 
-    });
+
+        repeticoes.push(
+            repeticao
+        );
+
+
+        pesos.push(
+            peso
+        );
+
+
+        volume +=
+            repeticao * peso;
+
+    }
 
 
     if (!valido) {
 
         alert(
-            "Informe as repetições de todas as séries."
+            "Informe as repetições e o peso de todas as séries."
         );
 
         return;
 
     }
-
-
-    const totalRepeticoes =
-        repeticoes.reduce(function(total, valor) {
-
-            return total + valor;
-
-        }, 0);
-
-
-    const volume =
-        carga * totalRepeticoes;
 
 
     const agora =
@@ -437,42 +575,56 @@ function registrarTreino() {
     const treino = {
 
         data:
-            agora.toLocaleDateString("pt-BR"),
+            agora.toLocaleDateString(
+                "pt-BR"
+            ),
 
         horario:
             agora.toLocaleTimeString(
+
                 "pt-BR",
+
                 {
                     hour: "2-digit",
                     minute: "2-digit"
                 }
+
             ),
 
         dia: dia,
 
         exercicio: exercicio,
 
-        carga: carga,
-
         series: quantidadeSeries,
 
         repeticoes: repeticoes,
+
+        pesos: pesos,
 
         volume: volume
 
     };
 
 
-    treinos.unshift(treino);
-
-
-    localStorage.setItem(
-        "treinos",
-        JSON.stringify(treinos)
+    treinos.unshift(
+        treino
     );
 
 
-    mostrarSugestao(treino);
+    localStorage.setItem(
+
+        "treinos",
+
+        JSON.stringify(
+            treinos
+        )
+
+    );
+
+
+    mostrarSugestao(
+        treino
+    );
 
 
     atualizarTabela();
@@ -485,52 +637,82 @@ function registrarTreino() {
 
 
 /* =========================================
-   PROGRESSÃO DE CARGA
+   SUGESTÃO DE PROGRESSÃO
 ========================================= */
 
 function mostrarSugestao(treino) {
 
     const resultado =
-        document.getElementById("resultado");
+        document.getElementById(
+            "resultado"
+        );
 
 
     const menorRepeticao =
-        Math.min(...treino.repeticoes);
+        Math.min(
+            ...treino.repeticoes
+        );
 
 
-    let novaCarga =
-        treino.carga;
+    let seriesHTML = "";
+
+
+    for (
+        let i = 0;
+        i < treino.series;
+        i++
+    ) {
+
+        seriesHTML += `
+
+            <p>
+
+                Série ${i + 1}:
+
+                <strong>
+                    ${treino.repeticoes[i]}
+                    reps
+                </strong>
+
+                ×
+
+                <strong>
+                    ${treino.pesos[i]}
+                    kg
+                </strong>
+
+            </p>
+
+        `;
+
+    }
 
 
     let mensagem = "";
 
 
-    if (menorRepeticao >= 12) {
-
-        novaCarga =
-            treino.carga * 1.05;
-
+    if (
+        menorRepeticao >= 12
+    ) {
 
         mensagem =
-            "Você conseguiu pelo menos 12 repetições em todas as séries. Pode tentar aumentar a carga no próximo treino.";
+            "Você atingiu pelo menos 12 repetições em todas as séries. Pode considerar aumentar a carga no próximo treino.";
 
     }
 
-    else if (menorRepeticao >= 8) {
+    else if (
+        menorRepeticao >= 8
+    ) {
 
         mensagem =
-            "Mantenha a carga e tente aumentar as repetições antes de subir o peso.";
+            "Mantenha as cargas e tente aumentar as repetições antes de subir o peso.";
 
     }
 
     else {
 
-        novaCarga =
-            treino.carga * 0.95;
-
-
         mensagem =
-            "Uma das séries ficou abaixo de 8 repetições. Considere reduzir um pouco a carga.";
+            "Uma das séries ficou abaixo de 8 repetições. Considere manter ou reduzir a carga dessa série.";
 
     }
 
@@ -541,43 +723,52 @@ function mostrarSugestao(treino) {
 
     resultado.innerHTML = `
 
-        <h3>${treino.exercicio}</h3>
+        <h3>
+            ${treino.exercicio}
+        </h3>
+
 
         <p>
+
             <strong>
+
                 ${nomesDias[treino.dia]}
+
             </strong>
+
         </p>
+
 
         <br>
 
-        <p>
-            Carga utilizada:
-            <strong>
-                ${treino.carga} kg
-            </strong>
-        </p>
 
-        <p>
-            Repetições:
-            <strong>
-                ${treino.repeticoes.join(" / ")}
-            </strong>
-        </p>
+        ${seriesHTML}
+
 
         <br>
 
+
         <p>
+
             ${mensagem}
+
         </p>
+
 
         <br>
 
+
         <p>
-            Próxima carga sugerida:
+
+            Volume total:
+
             <strong>
-                ${novaCarga.toFixed(1)} kg
+
+                ${treino.volume.toFixed(0)}
+                kg
+
             </strong>
+
         </p>
 
     `;
@@ -587,81 +778,154 @@ function mostrarSugestao(treino) {
 
 
 /* =========================================
-   HISTÓRICO
+   ATUALIZAR HISTÓRICO
 ========================================= */
 
 function atualizarTabela() {
 
     const lista =
-        document.getElementById("listaTreinos");
+        document.getElementById(
+            "listaTreinos"
+        );
 
 
     lista.innerHTML = "";
 
 
-    treinos.forEach(function(treino) {
+    treinos.forEach(
 
-        const linha =
-            document.createElement("tr");
+        function(treino) {
+
+            const linha =
+                document.createElement(
+                    "tr"
+                );
 
 
-        let reps;
+            let detalhesSeries = "";
 
 
-        if (Array.isArray(treino.repeticoes)) {
+            if (
+                Array.isArray(
+                    treino.repeticoes
+                )
+                &&
+                Array.isArray(
+                    treino.pesos
+                )
+            ) {
 
-            reps =
-                treino.repeticoes.join(" / ");
+                for (
+                    let i = 0;
+                    i < treino.repeticoes.length;
+                    i++
+                ) {
 
-        } else {
+                    detalhesSeries +=
 
-            reps =
-                treino.repeticoes;
+                        `${treino.repeticoes[i]} reps × ${treino.pesos[i]} kg`;
+
+
+                    if (
+                        i <
+                        treino.repeticoes.length - 1
+                    ) {
+
+                        detalhesSeries +=
+                            "<br>";
+
+                    }
+
+                }
+
+            }
+
+            else {
+
+                /*
+                REGISTROS ANTIGOS
+                */
+
+                detalhesSeries =
+                    Array.isArray(
+                        treino.repeticoes
+                    )
+
+                    ?
+
+                    treino.repeticoes.join(
+                        " / "
+                    )
+
+                    :
+
+                    treino.repeticoes;
+
+            }
+
+
+            const nomeDia =
+                nomesDias[treino.dia]
+                ||
+                "-";
+
+
+            linha.innerHTML = `
+
+                <td>
+
+                    ${treino.data}
+
+                </td>
+
+
+                <td>
+
+                    ${nomeDia}
+
+                </td>
+
+
+                <td>
+
+                    ${treino.exercicio}
+
+                </td>
+
+
+                <td>
+
+                    ${treino.series}
+
+                </td>
+
+
+                <td>
+
+                    ${detalhesSeries}
+
+                </td>
+
+
+                <td>
+
+                    ${Number(
+                        treino.volume
+                    ).toFixed(0)}
+                    kg
+
+                </td>
+
+            `;
+
+
+            lista.appendChild(
+                linha
+            );
 
         }
 
-
-        const nomeDia =
-            nomesDias[treino.dia] ||
-            "-";
-
-
-        linha.innerHTML = `
-
-            <td>
-                ${treino.data}
-            </td>
-
-            <td>
-                ${nomeDia}
-            </td>
-
-            <td>
-                ${treino.exercicio}
-            </td>
-
-            <td>
-                ${treino.carga} kg
-            </td>
-
-            <td>
-                ${treino.series}
-            </td>
-
-            <td>
-                ${reps}
-            </td>
-
-            <td>
-                ${Number(treino.volume).toFixed(0)} kg
-            </td>
-
-        `;
-
-
-        lista.appendChild(linha);
-
-    });
+    );
 
 }
 
@@ -674,76 +938,105 @@ function atualizarTabela() {
 function atualizarFichaSemanal() {
 
     const ficha =
-        document.getElementById("fichaSemanal");
+        document.getElementById(
+            "fichaSemanal"
+        );
 
 
     ficha.innerHTML = "";
 
 
-    Object.keys(nomesDias).forEach(function(dia) {
+    Object.keys(
+        nomesDias
+    ).forEach(
 
-        const div =
-            document.createElement("div");
+        function(dia) {
 
-
-        div.className =
-            "diaSemana";
-
-
-        const exercicios =
-            exerciciosSemana[dia];
+            const div =
+                document.createElement(
+                    "div"
+                );
 
 
-        let listaExercicios = "";
+            div.className =
+                "diaSemana";
 
 
-        if (exercicios.length === 0) {
-
-            listaExercicios =
-                "<p>Nenhum exercício cadastrado.</p>";
-
-        } else {
-
-            listaExercicios =
-                "<ul>";
+            const exercicios =
+                exerciciosSemana[dia];
 
 
-            exercicios.forEach(function(exercicio) {
+            let listaExercicios =
+                "";
+
+
+            if (
+                exercicios.length === 0
+            ) {
+
+                listaExercicios =
+                    "<p>Nenhum exercício cadastrado.</p>";
+
+            }
+
+            else {
+
+                listaExercicios =
+                    "<ul>";
+
+
+                exercicios.forEach(
+
+                    function(exercicio) {
+
+                        listaExercicios +=
+                            `<li>${exercicio}</li>`;
+
+                    }
+
+                );
+
 
                 listaExercicios +=
-                    `<li>${exercicio}</li>`;
+                    "</ul>";
 
-            });
+            }
 
 
-            listaExercicios +=
-                "</ul>";
+            const nomeTreino =
+                nomesTreinos[dia]
+                ||
+                "Treino não definido";
+
+
+            div.innerHTML = `
+
+                <h3>
+
+                    ${nomesDias[dia]}
+
+                </h3>
+
+
+                <p class="nomeTreinoSemana">
+
+                    ${nomeTreino}
+
+                </p>
+
+
+                ${listaExercicios}
+
+            `;
+
+
+            ficha.appendChild(
+                div
+            );
 
         }
 
-
-        let nomeTreino =
-            nomesTreinos[dia] || "Treino não definido";
-
-
-        div.innerHTML = `
-
-            <h3>
-                ${nomesDias[dia]}
-            </h3>
-
-            <p class="nomeTreinoSemana">
-                ${nomeTreino}
-            </p>
-
-            ${listaExercicios}
-
-        `;
-
-
-        ficha.appendChild(div);
-
-    });
+    );
 
 }
 
@@ -755,21 +1048,38 @@ function atualizarFichaSemanal() {
 
 function limparFormulario() {
 
-    document.getElementById("carga").value =
-        "";
-
-
-    const inputs =
+    const repeticoes =
         document.querySelectorAll(
             ".repeticaoSerie"
         );
 
 
-    inputs.forEach(function(input) {
+    const pesos =
+        document.querySelectorAll(
+            ".pesoSerie"
+        );
 
-        input.value = "";
 
-    });
+    repeticoes.forEach(
+
+        function(input) {
+
+            input.value = "";
+
+        }
+
+    );
+
+
+    pesos.forEach(
+
+        function(input) {
+
+            input.value = "";
+
+        }
+
+    );
 
 }
 
@@ -797,27 +1107,33 @@ function limparHistorico() {
     treinos = [];
 
 
-    localStorage.removeItem("treinos");
+    localStorage.removeItem(
+        "treinos"
+    );
 
 
     atualizarTabela();
 
 
-    document.getElementById("resultado").style.display =
-        "none";
+    document.getElementById(
+        "resultado"
+    ).style.display = "none";
 
 }
 
 
 
 /* =========================================
-   INICIAR SISTEMA
+   INICIAR
 ========================================= */
 
 carregarExerciciosDoDia();
 
+
 gerarSeries();
 
+
 atualizarTabela();
+
 
 atualizarFichaSemanal();

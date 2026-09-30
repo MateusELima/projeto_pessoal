@@ -20,18 +20,24 @@
         Organize seus treinos e acompanhe sua evolução.
     </p>
 
+
     <!-- ============================= -->
-    <!-- TREINO DO DIA -->
+    <!-- TREINO -->
     <!-- ============================= -->
 
     <div class="card">
 
-        <h2>Meu treino</h2>
+        <h2>Meu Treino</h2>
+
+
+        <!-- DIA -->
 
         <label>Dia do treino</label>
 
-        <select id="diaTreino" onchange="carregarExerciciosDoDia()">
-
+        <select
+            id="diaTreino"
+            onchange="carregarExerciciosDoDia()"
+        >
             <option value="segunda">Segunda-feira</option>
             <option value="terca">Terça-feira</option>
             <option value="quarta">Quarta-feira</option>
@@ -39,9 +45,10 @@
             <option value="sexta">Sexta-feira</option>
             <option value="sabado">Sábado</option>
             <option value="domingo">Domingo</option>
-
         </select>
 
+
+        <!-- NOME DO TREINO -->
 
         <label>Nome do treino</label>
 
@@ -53,7 +60,7 @@
 
         <button
             type="button"
-            class="btnSecundario"
+            class="btnAzul"
             onclick="salvarNomeTreino()"
         >
             Salvar nome do treino
@@ -66,8 +73,7 @@
 
         <div class="linha-exercicio">
 
-            <select id="exercicio">
-            </select>
+            <select id="exercicio"></select>
 
             <button
                 type="button"
@@ -80,14 +86,14 @@
         </div>
 
 
-        <!-- CADASTRO DE EXERCÍCIO -->
+        <!-- CADASTRAR EXERCÍCIO -->
 
         <div
             id="cadastroExercicio"
             class="cadastroExercicio"
         >
 
-            <h3>Cadastrar exercício</h3>
+            <h3>Novo exercício</h3>
 
             <label>Nome do exercício</label>
 
@@ -102,13 +108,33 @@
 
             <select id="diaNovoExercicio">
 
-                <option value="segunda">Segunda-feira</option>
-                <option value="terca">Terça-feira</option>
-                <option value="quarta">Quarta-feira</option>
-                <option value="quinta">Quinta-feira</option>
-                <option value="sexta">Sexta-feira</option>
-                <option value="sabado">Sábado</option>
-                <option value="domingo">Domingo</option>
+                <option value="segunda">
+                    Segunda-feira
+                </option>
+
+                <option value="terca">
+                    Terça-feira
+                </option>
+
+                <option value="quarta">
+                    Quarta-feira
+                </option>
+
+                <option value="quinta">
+                    Quinta-feira
+                </option>
+
+                <option value="sexta">
+                    Sexta-feira
+                </option>
+
+                <option value="sabado">
+                    Sábado
+                </option>
+
+                <option value="domingo">
+                    Domingo
+                </option>
 
             </select>
 
@@ -123,20 +149,7 @@
         </div>
 
 
-        <!-- CARGA -->
-
-        <label>Carga utilizada (kg)</label>
-
-        <input
-            type="number"
-            id="carga"
-            placeholder="Ex: 30"
-            min="0"
-            step="0.5"
-        >
-
-
-        <!-- SÉRIES -->
+        <!-- QUANTIDADE DE SÉRIES -->
 
         <label>Quantidade de séries</label>
 
@@ -146,18 +159,33 @@
         >
 
             <option value="1">1 série</option>
+
             <option value="2">2 séries</option>
-            <option value="3" selected>3 séries</option>
+
+            <option value="3" selected>
+                3 séries
+            </option>
+
             <option value="4">4 séries</option>
+
             <option value="5">5 séries</option>
+
+            <option value="6">6 séries</option>
 
         </select>
 
 
+        <!-- CAMPOS DAS SÉRIES -->
+
         <div id="camposSeries"></div>
 
 
-        <button onclick="registrarTreino()">
+        <!-- REGISTRAR -->
+
+        <button
+            class="btnRegistrar"
+            onclick="registrarTreino()"
+        >
             Registrar treino
         </button>
 
@@ -181,7 +209,7 @@
 
     <div class="card">
 
-        <h2>📅 Minha semana</h2>
+        <h2>📅 Minha Semana</h2>
 
         <div id="fichaSemanal"></div>
 
@@ -196,7 +224,7 @@
 
         <div class="tituloHistorico">
 
-            <h2>Histórico de Treinos</h2>
+            <h2>📊 Histórico de Treinos</h2>
 
             <button
                 class="btnLimpar"
@@ -217,11 +245,15 @@
                     <tr>
 
                         <th>Data</th>
+
                         <th>Dia</th>
+
                         <th>Exercício</th>
-                        <th>Carga</th>
+
                         <th>Séries</th>
-                        <th>Repetições</th>
+
+                        <th>Repetições / Peso</th>
+
                         <th>Volume</th>
 
                     </tr>

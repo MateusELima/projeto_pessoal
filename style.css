@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #111827;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #9ca3af;
+    margin-bottom: 30px;
+}
+
+/* FORMULÁRIO */
+
+.card {
+    background-color: #1f2937;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+select {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #374151;
+    border-radius: 7px;
+    background-color: #111827;
+    color: white;
+    font-size: 16px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #22c55e;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #22c55e;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #16a34a;
+}
+
+/* RESULTADO */
+
+.resultado {
+    display: none;
+    background-color: #1f2937;
+    border-left: 5px solid #22c55e;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.resultado h3 {
+    margin-bottom: 10px;
+}
+
+/* HISTÓRICO */
+
+.historico {
+    background-color: #1f2937;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.tituloHistorico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.tituloHistorico h2 {
+    font-size: 24px;
+}
+
+.btnLimpar {
+    width: auto;
+    margin: 0;
+    padding: 10px 15px;
+    background-color: #dc2626;
+}
+
+.btnLimpar:hover {
+    background-color: #b91c1c;
+}
+
+/* TABELA */
+
+.tabelaContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #374151;
+}
+
+th {
+    color: #22c55e;
+}
+
+tbody tr:hover {
+    background-color: #374151;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 95%;
+        padding: 20px 0;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .tituloHistorico {
+        display: block;
+    }
+
+    .btnLimpar {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+/* CADASTRO DE EXERCÍCIO */
+
+.linha-exercicio {
+    display: flex;
+    gap: 10px;
+}
+
+.linha-exercicio select {
+    flex: 1;
+}
+
+.btnNovo {
+    width: auto;
+    margin: 0;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+.cadastroExercicio {
+    display: none;
+
+    margin-top: 15px;
+    padding: 20px;
+
+    background-color: #111827;
+
+    border: 1px solid #374151;
+    border-radius: 8px;
+}
+
+.cadastroExercicio button {
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+
+    .linha-exercicio {
+        display: block;
+    }
+
+    .btnNovo {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Progressão de Carga</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏋️ Progressão de Carga</h1>
+
+    <p class="subtitulo">
+        Registre seus treinos e acompanhe sua evolução.
+    </p>
+
+    <div class="card">
+
+        <label>Exercício</label>
+
+       <label>Exercício</label>
+
+<div class="linha-exercicio">
+
+    <select id="exercicio">
+        <option value="Supino Reto">Supino Reto</option>
+        <option value="Supino Inclinado">Supino Inclinado</option>
+        <option value="Agachamento">Agachamento</option>
+        <option value="Leg Press">Leg Press</option>
+        <option value="Cadeira Extensora">Cadeira Extensora</option>
+        <option value="Mesa Flexora">Mesa Flexora</option>
+        <option value="Puxada Alta">Puxada Alta</option>
+        <option value="Remada">Remada</option>
+        <option value="Desenvolvimento">Desenvolvimento</option>
+        <option value="Elevação Lateral">Elevação Lateral</option>
+        <option value="Rosca Direta">Rosca Direta</option>
+        <option value="Tríceps Pulley">Tríceps Pulley</option>
+    </select>
+
+    <button
+        type="button"
+        class="btnNovo"
+        onclick="mostrarCadastroExercicio()"
+    >
+        + Novo exercício
+    </button>
+
+</div>
+
+<div id="cadastroExercicio" class="cadastroExercicio">
+
+    <label>Nome do novo exercício</label>
+
+    <input
+        type="text"
+        id="novoExercicio"
+        placeholder="Ex: Rosca Martelo"
+    >
+
+    <button
+        type="button"
+        onclick="cadastrarExercicio()"
+    >
+        Cadastrar exercício
+    </button>
+
+</div>
+
+        <label>Carga utilizada (kg)</label>
+        <input
+            type="number"
+            id="carga"
+            placeholder="Ex: 30"
+            min="0"
+            step="0.5"
+        >
+
+       <label>Quantidade de séries</label>
+<select id="series" onchange="gerarSeries()">
+    <option value="1">1 série</option>
+    <option value="2">2 séries</option>
+    <option value="3" selected>3 séries</option>
+    <option value="4">4 séries</option>
+    <option value="5">5 séries</option>
+</select>
+
+<div id="camposSeries"></div>
+
+        <button onclick="registrarTreino()">
+            Registrar treino
+        </button>
+
+    </div>
+
+
+    <div id="resultado" class="resultado"></div>
+
+
+    <div class="historico">
+
+        <div class="tituloHistorico">
+
+            <h2>Histórico de Treinos</h2>
+
+            <button
+                class="btnLimpar"
+                onclick="limparHistorico()"
+            >
+                Limpar histórico
+            </button>
+
+        </div>
+
+        <div class="tabelaContainer">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Exercício</th>
+                        <th>Carga</th>
+                        <th>Séries</th>
+                        <th>Repetições</th>
+                        <th>Volume</th>
+                    </tr>
+                </thead>
+
+                <tbody id="listaTreinos">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

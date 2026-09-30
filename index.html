@@ -7,7 +7,7 @@
 
     <title>Progressão de Carga</title>
 
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 
 <body>
@@ -56,6 +56,7 @@
 
 
         <button
+            type="button"
             class="btnAzul"
             onclick="salvarNomeTreino()"
         >
@@ -76,6 +77,7 @@
 
 
             <button
+                type="button"
                 class="btnNovo"
                 onclick="mostrarCadastroExercicio()"
             >
@@ -87,19 +89,14 @@
 
         <!-- ÚLTIMO TREINO -->
 
-        <div
-            id="ultimoTreino"
-            class="ultimoTreino"
-        >
+        <div class="ultimoTreino">
 
             <div class="ultimoTreinoTitulo">
                 🕘 Último treino
             </div>
 
             <div id="conteudoUltimoTreino">
-
                 Selecione um exercício.
-
             </div>
 
         </div>
@@ -139,34 +136,45 @@
             </select>
 
 
-            <button onclick="cadastrarExercicio()">
+            <button
+                type="button"
+                onclick="cadastrarExercicio()"
+            >
                 Cadastrar exercício
             </button>
 
         </div>
 
 
-        <!-- SÉRIES -->
+        <!-- =========================
+             SÉRIES
+        ========================== -->
 
-        <label>Quantidade de séries</label>
+        <div class="cabecalhoSeries">
 
-        <select
-            id="series"
-            onchange="gerarSeries()"
-        >
-            <option value="1">1 série</option>
-            <option value="2">2 séries</option>
-            <option value="3" selected>3 séries</option>
-            <option value="4">4 séries</option>
-            <option value="5">5 séries</option>
-            <option value="6">6 séries</option>
-        </select>
+            <label>Séries de hoje</label>
+
+            <span id="contadorSeries">
+                3 séries
+            </span>
+
+        </div>
 
 
         <div id="camposSeries"></div>
 
 
         <button
+            type="button"
+            class="btnAdicionarSerie"
+            onclick="adicionarSerie()"
+        >
+            + Adicionar série
+        </button>
+
+
+        <button
+            type="button"
             class="btnRegistrar"
             onclick="registrarTreino()"
         >
@@ -220,6 +228,7 @@
         <div class="botoesBackup">
 
             <button
+                type="button"
                 class="btnBackup"
                 onclick="fazerBackup()"
             >
@@ -228,6 +237,7 @@
 
 
             <button
+                type="button"
                 class="btnRestaurar"
                 onclick="selecionarBackup()"
             >
@@ -236,6 +246,7 @@
 
 
             <button
+                type="button"
                 class="btnTxt"
                 onclick="exportarHistoricoTXT()"
             >
@@ -299,12 +310,16 @@
             </select>
 
 
-            <button onclick="salvarEdicaoExercicio()">
+            <button
+                type="button"
+                onclick="salvarEdicaoExercicio()"
+            >
                 Salvar alterações
             </button>
 
 
             <button
+                type="button"
                 class="btnCancelar"
                 onclick="fecharEdicao()"
             >
@@ -328,6 +343,7 @@
 
 
             <button
+                type="button"
                 class="btnLimpar"
                 onclick="limparHistorico()"
             >
@@ -366,7 +382,7 @@
 </div>
 
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 
 </body>
 

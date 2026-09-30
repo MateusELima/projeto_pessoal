@@ -17,17 +17,11 @@ let nomesTreinos =
 const nomesDias = {
 
     segunda: "Segunda-feira",
-
     terca: "Terça-feira",
-
     quarta: "Quarta-feira",
-
     quinta: "Quinta-feira",
-
     sexta: "Sexta-feira",
-
     sabado: "Sábado",
-
     domingo: "Domingo"
 
 };
@@ -71,11 +65,8 @@ prepararDias();
 function salvarExercicios() {
 
     localStorage.setItem(
-
         "exerciciosSemana",
-
         JSON.stringify(exerciciosSemana)
-
     );
 
 }
@@ -93,9 +84,7 @@ function mostrarCadastroExercicio() {
         );
 
 
-    if (
-        caixa.style.display === "block"
-    ) {
+    if (caixa.style.display === "block") {
 
         caixa.style.display = "none";
 
@@ -164,11 +153,9 @@ function cadastrarExercicio() {
             function(exercicio) {
 
                 return (
-
                     exercicio.toLowerCase()
                     ===
                     nome.toLowerCase()
-
                 );
 
             }
@@ -221,7 +208,7 @@ function cadastrarExercicio() {
 
 
 /* =========================================
-   CARREGAR EXERCÍCIOS
+   CARREGAR EXERCÍCIOS DO DIA
 ========================================= */
 
 function carregarExerciciosDoDia() {
@@ -245,9 +232,7 @@ function carregarExerciciosDoDia() {
         exerciciosSemana[dia];
 
 
-    if (
-        exercicios.length === 0
-    ) {
+    if (exercicios.length === 0) {
 
         const option =
             document.createElement(
@@ -257,12 +242,13 @@ function carregarExerciciosDoDia() {
 
         option.value = "";
 
-
         option.textContent =
             "Nenhum exercício cadastrado";
 
 
-        select.appendChild(option);
+        select.appendChild(
+            option
+        );
 
     }
 
@@ -283,7 +269,9 @@ function carregarExerciciosDoDia() {
                 option.textContent = nome;
 
 
-                select.appendChild(option);
+                select.appendChild(
+                    option
+                );
 
             }
 
@@ -296,6 +284,205 @@ function carregarExerciciosDoDia() {
         "nomeTreino"
     ).value =
         nomesTreinos[dia] || "";
+
+
+    mostrarUltimoTreino();
+
+}
+
+
+/* =========================================
+   ÚLTIMO TREINO
+========================================= */
+
+function mostrarUltimoTreino() {
+
+    const exercicio =
+        document.getElementById(
+            "exercicio"
+        ).value;
+
+
+    const container =
+        document.getElementById(
+            "conteudoUltimoTreino"
+        );
+
+
+    if (!exercicio) {
+
+        container.innerHTML = `
+
+            <p class="semHistorico">
+                Nenhum exercício selecionado.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       Como os novos treinos são adicionados
+       no início do array com unshift(),
+       o primeiro encontrado é o mais recente.
+    */
+
+    const ultimoTreino =
+        treinos.find(
+
+            function(treino) {
+
+                return (
+                    treino.exercicio === exercicio
+                );
+
+            }
+
+        );
+
+
+    if (!ultimoTreino) {
+
+        container.innerHTML = `
+
+            <p class="semHistorico">
+
+                Nenhum treino registrado
+                para este exercício.
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    let seriesHTML = "";
+
+
+    if (
+        Array.isArray(
+            ultimoTreino.repeticoes
+        )
+    ) {
+
+        ultimoTreino.repeticoes.forEach(
+
+            function(
+                repeticao,
+                indice
+            ) {
+
+                let peso = "-";
+
+
+                if (
+                    Array.isArray(
+                        ultimoTreino.pesos
+                    )
+                ) {
+
+                    peso =
+                        ultimoTreino.pesos[indice];
+
+                }
+
+
+                seriesHTML += `
+
+                    <div class="ultimoTreinoSerie">
+
+                        <span>
+                            Série ${indice + 1}
+                        </span>
+
+                        <strong>
+
+                            ${repeticao} reps
+
+                            ${peso !== undefined && peso !== "-"
+                                ? `× ${peso} kg`
+                                : ""
+                            }
+
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+    }
+
+
+    let horario = "";
+
+
+    if (ultimoTreino.horario) {
+
+        horario =
+            ` às ${ultimoTreino.horario}`;
+
+    }
+
+
+    let volumeHTML = "";
+
+
+    if (
+        ultimoTreino.volume !== undefined
+        &&
+        !isNaN(
+            Number(
+                ultimoTreino.volume
+            )
+        )
+    ) {
+
+        volumeHTML = `
+
+            <div class="ultimoTreinoVolume">
+
+                Volume:
+
+                <strong>
+
+                    ${Number(
+                        ultimoTreino.volume
+                    ).toFixed(0)} kg
+
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="ultimoTreinoData">
+
+            ${ultimoTreino.data}${horario}
+
+        </div>
+
+
+        ${seriesHTML}
+
+
+        ${volumeHTML}
+
+    `;
 
 }
 
@@ -325,11 +512,8 @@ function salvarNomeTreino() {
 
 
     localStorage.setItem(
-
         "nomesTreinos",
-
         JSON.stringify(nomesTreinos)
-
     );
 
 
@@ -448,11 +632,9 @@ function salvarEdicaoExercicio() {
             ) {
 
                 if (
-
                     novoDia === diaEdicao
                     &&
                     indice === indiceEdicao
-
                 ) {
 
                     return false;
@@ -461,11 +643,9 @@ function salvarEdicaoExercicio() {
 
 
                 return (
-
                     exercicio.toLowerCase()
                     ===
                     novoNome.toLowerCase()
-
                 );
 
             }
@@ -492,7 +672,9 @@ function salvarEdicaoExercicio() {
 
 
     exerciciosSemana[novoDia]
-        .push(novoNome);
+        .push(
+            novoNome
+        );
 
 
     salvarExercicios();
@@ -562,11 +744,9 @@ function gerarSeries() {
 
     const quantidade =
         parseInt(
-
             document.getElementById(
                 "series"
             ).value
-
         );
 
 
@@ -610,7 +790,6 @@ function gerarSeries() {
                     Repetições
                 </label>
 
-
                 <input
                     type="number"
                     min="1"
@@ -626,7 +805,6 @@ function gerarSeries() {
                 <label>
                     Peso (kg)
                 </label>
-
 
                 <input
                     type="number"
@@ -670,11 +848,9 @@ function registrarTreino() {
 
     const quantidadeSeries =
         parseInt(
-
             document.getElementById(
                 "series"
             ).value
-
         );
 
 
@@ -727,7 +903,6 @@ function registrarTreino() {
 
 
         if (
-
             isNaN(repeticao)
             ||
             repeticao <= 0
@@ -735,7 +910,6 @@ function registrarTreino() {
             isNaN(peso)
             ||
             peso < 0
-
         ) {
 
             alert(
@@ -804,11 +978,8 @@ function registrarTreino() {
 
 
     localStorage.setItem(
-
         "treinos",
-
         JSON.stringify(treinos)
-
     );
 
 
@@ -818,6 +989,9 @@ function registrarTreino() {
 
 
     atualizarTabela();
+
+
+    mostrarUltimoTreino();
 
 
     limparSeries();
@@ -885,7 +1059,7 @@ function mostrarResultado(
     ) {
 
         mensagem =
-            "Você atingiu 12 ou mais repetições em todas as séries.";
+            "Você atingiu 12 ou mais repetições em todas as séries. Pode considerar uma progressão de carga no próximo treino.";
 
     }
 
@@ -901,7 +1075,7 @@ function mostrarResultado(
     else {
 
         mensagem =
-            "Uma das séries ficou abaixo de 8 repetições.";
+            "Uma das séries ficou abaixo de 8 repetições. Considere manter a carga antes de aumentar.";
 
     }
 
@@ -992,20 +1166,17 @@ function atualizarFichaSemanal() {
                     "Treino não definido";
 
 
-                let exerciciosHTML =
-                    "";
+                let exerciciosHTML = "";
 
 
                 if (
-
                     exerciciosSemana[dia]
                         .length === 0
-
                 ) {
 
                     exerciciosHTML = `
 
-                        <p>
+                        <p class="semHistorico">
 
                             Nenhum exercício cadastrado.
 
@@ -1041,11 +1212,8 @@ function atualizarFichaSemanal() {
 
 
                                             <button
-
                                                 class="btnEditar"
-
                                                 onclick="editarExercicio('${dia}', ${indice})"
-
                                             >
 
                                                 ✏️ Editar
@@ -1054,11 +1222,8 @@ function atualizarFichaSemanal() {
 
 
                                             <button
-
                                                 class="btnExcluir"
-
                                                 onclick="excluirExercicio('${dia}', ${indice})"
-
                                             >
 
                                                 🗑️
@@ -1082,9 +1247,7 @@ function atualizarFichaSemanal() {
                 card.innerHTML = `
 
                     <h3>
-
                         ${nomesDias[dia]}
-
                     </h3>
 
 
@@ -1140,11 +1303,13 @@ function atualizarTabela() {
 
 
             if (
-
                 Array.isArray(
                     treino.pesos
                 )
-
+                &&
+                Array.isArray(
+                    treino.repeticoes
+                )
             ) {
 
                 for (
@@ -1154,15 +1319,12 @@ function atualizarTabela() {
                 ) {
 
                     detalhes +=
-
                         `${treino.repeticoes[i]} reps × ${treino.pesos[i]} kg`;
 
 
                     if (
-
                         i <
                         treino.repeticoes.length - 1
-
                     ) {
 
                         detalhes += "<br>";
@@ -1184,7 +1346,28 @@ function atualizarTabela() {
                             " / "
                         )
                         :
-                        treino.repeticoes;
+                        treino.repeticoes || "-";
+
+            }
+
+
+            let volume = "-";
+
+
+            if (
+                treino.volume !== undefined
+                &&
+                !isNaN(
+                    Number(
+                        treino.volume
+                    )
+                )
+            ) {
+
+                volume =
+                    `${Number(
+                        treino.volume
+                    ).toFixed(0)} kg`;
 
             }
 
@@ -1192,7 +1375,7 @@ function atualizarTabela() {
             linha.innerHTML = `
 
                 <td>
-                    ${treino.data}
+                    ${treino.data || "-"}
                 </td>
 
                 <td>
@@ -1200,11 +1383,11 @@ function atualizarTabela() {
                 </td>
 
                 <td>
-                    ${treino.exercicio}
+                    ${treino.exercicio || "-"}
                 </td>
 
                 <td>
-                    ${treino.series}
+                    ${treino.series || "-"}
                 </td>
 
                 <td>
@@ -1212,7 +1395,7 @@ function atualizarTabela() {
                 </td>
 
                 <td>
-                    ${Number(treino.volume).toFixed(0)} kg
+                    ${volume}
                 </td>
 
             `;
@@ -1230,7 +1413,7 @@ function atualizarTabela() {
 
 
 /* =========================================
-   LIMPAR CAMPOS
+   LIMPAR CAMPOS DAS SÉRIES
 ========================================= */
 
 function limparSeries() {
@@ -1389,13 +1572,7 @@ function selecionarBackup() {
         );
 
 
-    /*
-       Permite selecionar novamente
-       o mesmo arquivo caso necessário.
-    */
-
     input.value = "";
-
 
     input.click();
 
@@ -1437,13 +1614,15 @@ function restaurarBackup(
 
 
                 if (
-
-                    !backup.treinos
+                    !Array.isArray(
+                        backup.treinos
+                    )
                     ||
-                    !backup.exerciciosSemana
+                    typeof backup.exerciciosSemana
+                    !== "object"
                     ||
-                    !backup.nomesTreinos
-
+                    typeof backup.nomesTreinos
+                    !== "object"
                 ) {
 
                     alert(
@@ -1460,7 +1639,7 @@ function restaurarBackup(
 
                         "Restaurar esse backup?\n\n" +
 
-                        "Os dados atuais do aplicativo serão substituídos pelos dados do arquivo."
+                        "Os dados atuais serão substituídos pelos dados do arquivo."
 
                     );
 
@@ -1488,35 +1667,26 @@ function restaurarBackup(
 
 
                 localStorage.setItem(
-
                     "treinos",
-
                     JSON.stringify(
                         treinos
                     )
-
                 );
 
 
                 localStorage.setItem(
-
                     "exerciciosSemana",
-
                     JSON.stringify(
                         exerciciosSemana
                     )
-
                 );
 
 
                 localStorage.setItem(
-
                     "nomesTreinos",
-
                     JSON.stringify(
                         nomesTreinos
                     )
-
                 );
 
 
@@ -1525,6 +1695,8 @@ function restaurarBackup(
                 atualizarFichaSemanal();
 
                 atualizarTabela();
+
+                mostrarUltimoTreino();
 
 
                 document.getElementById(
@@ -1545,7 +1717,7 @@ function restaurarBackup(
 
                     "Não foi possível restaurar o arquivo.\n\n" +
 
-                    "Verifique se você selecionou o arquivo JSON correto."
+                    "Verifique se selecionou o arquivo JSON correto."
 
                 );
 
@@ -1605,7 +1777,7 @@ function exportarHistoricoTXT() {
 
 
             texto +=
-                `Data: ${treino.data}`;
+                `Data: ${treino.data || "-"}`;
 
 
             if (
@@ -1622,8 +1794,13 @@ function exportarHistoricoTXT() {
 
 
             texto +=
-                `Dia: ${nomesDias[treino.dia] || treino.dia}\n`;
+                `Dia: ${nomesDias[treino.dia] || treino.dia || "-"}\n`;
 
+
+            /*
+               O nome atual da ficha é usado
+               somente como informação adicional.
+            */
 
             const nomeTreino =
                 nomesTreinos[
@@ -1642,15 +1819,13 @@ function exportarHistoricoTXT() {
 
 
             texto +=
-                `Exercício: ${treino.exercicio}\n\n`;
+                `Exercício: ${treino.exercicio || "-"}\n\n`;
 
 
             if (
-
                 Array.isArray(
                     treino.repeticoes
                 )
-
             ) {
 
                 treino.repeticoes
@@ -1661,29 +1836,29 @@ function exportarHistoricoTXT() {
                             i
                         ) {
 
-                            const peso =
+                            let peso = "-";
 
+
+                            if (
                                 Array.isArray(
                                     treino.pesos
                                 )
+                            ) {
 
-                                ?
+                                peso =
+                                    treino.pesos[i];
 
-                                treino.pesos[i]
-
-                                :
-
-                                "-";
+                            }
 
 
                             texto +=
-
                                 `Série ${i + 1}: ` +
-
                                 `${repeticao} repetições`;
 
 
                             if (
+                                peso !== undefined
+                                &&
                                 peso !== "-"
                             ) {
 
@@ -1707,11 +1882,18 @@ function exportarHistoricoTXT() {
 
             if (
                 treino.volume !== undefined
+                &&
+                !isNaN(
+                    Number(
+                        treino.volume
+                    )
+                )
             ) {
 
                 texto +=
-
-                    `Volume total: ${Number(treino.volume).toFixed(0)} kg\n`;
+                    `Volume total: ${Number(
+                        treino.volume
+                    ).toFixed(0)} kg\n`;
 
             }
 
@@ -1833,6 +2015,8 @@ function limparHistorico() {
 
     atualizarTabela();
 
+    mostrarUltimoTreino();
+
 
     document.getElementById(
         "resultado"
@@ -1853,3 +2037,5 @@ gerarSeries();
 atualizarFichaSemanal();
 
 atualizarTabela();
+
+mostrarUltimoTreino();

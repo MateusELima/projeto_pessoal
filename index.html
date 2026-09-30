@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,62 +17,116 @@
     <h1>🏋️ Progressão de Carga</h1>
 
     <p class="subtitulo">
-        Registre seus treinos e acompanhe sua evolução.
+        Organize seus treinos e acompanhe sua evolução.
     </p>
+
+    <!-- ============================= -->
+    <!-- TREINO DO DIA -->
+    <!-- ============================= -->
 
     <div class="card">
 
+        <h2>Meu treino</h2>
+
+        <label>Dia do treino</label>
+
+        <select id="diaTreino" onchange="carregarExerciciosDoDia()">
+
+            <option value="segunda">Segunda-feira</option>
+            <option value="terca">Terça-feira</option>
+            <option value="quarta">Quarta-feira</option>
+            <option value="quinta">Quinta-feira</option>
+            <option value="sexta">Sexta-feira</option>
+            <option value="sabado">Sábado</option>
+            <option value="domingo">Domingo</option>
+
+        </select>
+
+
+        <label>Nome do treino</label>
+
+        <input
+            type="text"
+            id="nomeTreino"
+            placeholder="Ex: Peito e Tríceps"
+        >
+
+        <button
+            type="button"
+            class="btnSecundario"
+            onclick="salvarNomeTreino()"
+        >
+            Salvar nome do treino
+        </button>
+
+
+        <!-- EXERCÍCIO -->
+
         <label>Exercício</label>
 
-       <label>Exercício</label>
+        <div class="linha-exercicio">
 
-<div class="linha-exercicio">
+            <select id="exercicio">
+            </select>
 
-    <select id="exercicio">
-        <option value="Supino Reto">Supino Reto</option>
-        <option value="Supino Inclinado">Supino Inclinado</option>
-        <option value="Agachamento">Agachamento</option>
-        <option value="Leg Press">Leg Press</option>
-        <option value="Cadeira Extensora">Cadeira Extensora</option>
-        <option value="Mesa Flexora">Mesa Flexora</option>
-        <option value="Puxada Alta">Puxada Alta</option>
-        <option value="Remada">Remada</option>
-        <option value="Desenvolvimento">Desenvolvimento</option>
-        <option value="Elevação Lateral">Elevação Lateral</option>
-        <option value="Rosca Direta">Rosca Direta</option>
-        <option value="Tríceps Pulley">Tríceps Pulley</option>
-    </select>
+            <button
+                type="button"
+                class="btnNovo"
+                onclick="mostrarCadastroExercicio()"
+            >
+                + Novo
+            </button>
 
-    <button
-        type="button"
-        class="btnNovo"
-        onclick="mostrarCadastroExercicio()"
-    >
-        + Novo exercício
-    </button>
+        </div>
 
-</div>
 
-<div id="cadastroExercicio" class="cadastroExercicio">
+        <!-- CADASTRO DE EXERCÍCIO -->
 
-    <label>Nome do novo exercício</label>
+        <div
+            id="cadastroExercicio"
+            class="cadastroExercicio"
+        >
 
-    <input
-        type="text"
-        id="novoExercicio"
-        placeholder="Ex: Rosca Martelo"
-    >
+            <h3>Cadastrar exercício</h3>
 
-    <button
-        type="button"
-        onclick="cadastrarExercicio()"
-    >
-        Cadastrar exercício
-    </button>
+            <label>Nome do exercício</label>
 
-</div>
+            <input
+                type="text"
+                id="novoExercicio"
+                placeholder="Ex: Rosca Martelo"
+            >
+
+
+            <label>Dia do exercício</label>
+
+            <select id="diaNovoExercicio">
+
+                <option value="segunda">Segunda-feira</option>
+                <option value="terca">Terça-feira</option>
+                <option value="quarta">Quarta-feira</option>
+                <option value="quinta">Quinta-feira</option>
+                <option value="sexta">Sexta-feira</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+
+            </select>
+
+
+            <button
+                type="button"
+                onclick="cadastrarExercicio()"
+            >
+                Cadastrar exercício
+            </button>
+
+        </div>
+
+
+        <!-- CARGA -->
 
         <label>Carga utilizada (kg)</label>
+
         <input
             type="number"
             id="carga"
@@ -80,16 +135,27 @@
             step="0.5"
         >
 
-       <label>Quantidade de séries</label>
-<select id="series" onchange="gerarSeries()">
-    <option value="1">1 série</option>
-    <option value="2">2 séries</option>
-    <option value="3" selected>3 séries</option>
-    <option value="4">4 séries</option>
-    <option value="5">5 séries</option>
-</select>
 
-<div id="camposSeries"></div>
+        <!-- SÉRIES -->
+
+        <label>Quantidade de séries</label>
+
+        <select
+            id="series"
+            onchange="gerarSeries()"
+        >
+
+            <option value="1">1 série</option>
+            <option value="2">2 séries</option>
+            <option value="3" selected>3 séries</option>
+            <option value="4">4 séries</option>
+            <option value="5">5 séries</option>
+
+        </select>
+
+
+        <div id="camposSeries"></div>
+
 
         <button onclick="registrarTreino()">
             Registrar treino
@@ -98,8 +164,33 @@
     </div>
 
 
-    <div id="resultado" class="resultado"></div>
+    <!-- ============================= -->
+    <!-- RESULTADO -->
+    <!-- ============================= -->
 
+    <div
+        id="resultado"
+        class="resultado"
+    >
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- FICHA SEMANAL -->
+    <!-- ============================= -->
+
+    <div class="card">
+
+        <h2>📅 Minha semana</h2>
+
+        <div id="fichaSemanal"></div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- HISTÓRICO -->
+    <!-- ============================= -->
 
     <div class="historico">
 
@@ -116,20 +207,27 @@
 
         </div>
 
+
         <div class="tabelaContainer">
 
             <table>
 
                 <thead>
+
                     <tr>
+
                         <th>Data</th>
+                        <th>Dia</th>
                         <th>Exercício</th>
                         <th>Carga</th>
                         <th>Séries</th>
                         <th>Repetições</th>
                         <th>Volume</th>
+
                     </tr>
+
                 </thead>
+
 
                 <tbody id="listaTreinos">
                 </tbody>
@@ -142,7 +240,9 @@
 
 </div>
 
+
 <script src="script.js"></script>
 
 </body>
+
 </html>

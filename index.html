@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Progressão de Carga</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,29 +13,15 @@
 <div class="container">
 
     <h1>🏋️ Progressão de Carga</h1>
+    <p class="subtitulo">Organize seus treinos e acompanhe sua evolução.</p>
 
-    <p class="subtitulo">
-        Organize seus treinos e acompanhe sua evolução.
-    </p>
-
-
-    <!-- ============================= -->
     <!-- TREINO -->
-    <!-- ============================= -->
-
     <div class="card">
 
         <h2>Meu Treino</h2>
 
-
-        <!-- DIA -->
-
         <label>Dia do treino</label>
-
-        <select
-            id="diaTreino"
-            onchange="carregarExerciciosDoDia()"
-        >
+        <select id="diaTreino" onchange="carregarExerciciosDoDia()">
             <option value="segunda">Segunda-feira</option>
             <option value="terca">Terça-feira</option>
             <option value="quarta">Quarta-feira</option>
@@ -46,9 +30,6 @@
             <option value="sabado">Sábado</option>
             <option value="domingo">Domingo</option>
         </select>
-
-
-        <!-- NOME DO TREINO -->
 
         <label>Nome do treino</label>
 
@@ -59,13 +40,11 @@
         >
 
         <button
-            type="button"
             class="btnAzul"
             onclick="salvarNomeTreino()"
         >
             Salvar nome do treino
         </button>
-
 
         <!-- EXERCÍCIO -->
 
@@ -76,7 +55,6 @@
             <select id="exercicio"></select>
 
             <button
-                type="button"
                 class="btnNovo"
                 onclick="mostrarCadastroExercicio()"
             >
@@ -85,71 +63,42 @@
 
         </div>
 
-
-        <!-- CADASTRAR EXERCÍCIO -->
+        <!-- CADASTRO -->
 
         <div
             id="cadastroExercicio"
-            class="cadastroExercicio"
+            class="caixaEdicao"
         >
 
             <h3>Novo exercício</h3>
 
-            <label>Nome do exercício</label>
+            <label>Nome</label>
 
             <input
                 type="text"
                 id="novoExercicio"
-                placeholder="Ex: Rosca Martelo"
+                placeholder="Ex: Supino Reto"
             >
 
-
-            <label>Dia do exercício</label>
+            <label>Dia</label>
 
             <select id="diaNovoExercicio">
-
-                <option value="segunda">
-                    Segunda-feira
-                </option>
-
-                <option value="terca">
-                    Terça-feira
-                </option>
-
-                <option value="quarta">
-                    Quarta-feira
-                </option>
-
-                <option value="quinta">
-                    Quinta-feira
-                </option>
-
-                <option value="sexta">
-                    Sexta-feira
-                </option>
-
-                <option value="sabado">
-                    Sábado
-                </option>
-
-                <option value="domingo">
-                    Domingo
-                </option>
-
+                <option value="segunda">Segunda-feira</option>
+                <option value="terca">Terça-feira</option>
+                <option value="quarta">Quarta-feira</option>
+                <option value="quinta">Quinta-feira</option>
+                <option value="sexta">Sexta-feira</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
             </select>
 
-
-            <button
-                type="button"
-                onclick="cadastrarExercicio()"
-            >
+            <button onclick="cadastrarExercicio()">
                 Cadastrar exercício
             </button>
 
         </div>
 
-
-        <!-- QUANTIDADE DE SÉRIES -->
+        <!-- SÉRIES -->
 
         <label>Quantidade de séries</label>
 
@@ -157,30 +106,15 @@
             id="series"
             onchange="gerarSeries()"
         >
-
             <option value="1">1 série</option>
-
             <option value="2">2 séries</option>
-
-            <option value="3" selected>
-                3 séries
-            </option>
-
+            <option value="3" selected>3 séries</option>
             <option value="4">4 séries</option>
-
             <option value="5">5 séries</option>
-
             <option value="6">6 séries</option>
-
         </select>
 
-
-        <!-- CAMPOS DAS SÉRIES -->
-
         <div id="camposSeries"></div>
-
-
-        <!-- REGISTRAR -->
 
         <button
             class="btnRegistrar"
@@ -192,33 +126,76 @@
     </div>
 
 
-    <!-- ============================= -->
     <!-- RESULTADO -->
-    <!-- ============================= -->
 
     <div
         id="resultado"
         class="resultado"
-    >
-    </div>
+    ></div>
 
 
-    <!-- ============================= -->
-    <!-- FICHA SEMANAL -->
-    <!-- ============================= -->
+    <!-- MINHA SEMANA -->
 
     <div class="card">
 
         <h2>📅 Minha Semana</h2>
+
+        <p class="textoAjuda">
+            Aqui você pode editar, mover ou excluir os exercícios da sua ficha.
+        </p>
 
         <div id="fichaSemanal"></div>
 
     </div>
 
 
-    <!-- ============================= -->
+    <!-- JANELA DE EDIÇÃO -->
+
+    <div
+        id="modalEdicao"
+        class="modal"
+    >
+
+        <div class="modalConteudo">
+
+            <h2>✏️ Editar exercício</h2>
+
+            <label>Nome do exercício</label>
+
+            <input
+                type="text"
+                id="editarNomeExercicio"
+            >
+
+            <label>Dia do exercício</label>
+
+            <select id="editarDiaExercicio">
+                <option value="segunda">Segunda-feira</option>
+                <option value="terca">Terça-feira</option>
+                <option value="quarta">Quarta-feira</option>
+                <option value="quinta">Quinta-feira</option>
+                <option value="sexta">Sexta-feira</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+            </select>
+
+            <button onclick="salvarEdicaoExercicio()">
+                Salvar alterações
+            </button>
+
+            <button
+                class="btnCancelar"
+                onclick="fecharEdicao()"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+    </div>
+
+
     <!-- HISTÓRICO -->
-    <!-- ============================= -->
 
     <div class="historico">
 
@@ -235,34 +212,22 @@
 
         </div>
 
-
         <div class="tabelaContainer">
 
             <table>
 
                 <thead>
-
                     <tr>
-
                         <th>Data</th>
-
                         <th>Dia</th>
-
                         <th>Exercício</th>
-
                         <th>Séries</th>
-
                         <th>Repetições / Peso</th>
-
                         <th>Volume</th>
-
                     </tr>
-
                 </thead>
 
-
-                <tbody id="listaTreinos">
-                </tbody>
+                <tbody id="listaTreinos"></tbody>
 
             </table>
 
@@ -272,9 +237,7 @@
 
 </div>
 
-
 <script src="script.js"></script>
 
 </body>
-
 </html>

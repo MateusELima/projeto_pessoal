@@ -65,15 +65,18 @@ prepararDias();
 function salvarExercicios() {
 
     localStorage.setItem(
+
         "exerciciosSemana",
+
         JSON.stringify(exerciciosSemana)
+
     );
 
 }
 
 
 /* =========================================
-   MOSTRAR CADASTRO
+   CADASTRO DE EXERCÍCIO
 ========================================= */
 
 function mostrarCadastroExercicio() {
@@ -84,7 +87,9 @@ function mostrarCadastroExercicio() {
         );
 
 
-    if (caixa.style.display === "block") {
+    if (
+        caixa.style.display === "block"
+    ) {
 
         caixa.style.display = "none";
 
@@ -114,10 +119,6 @@ function mostrarCadastroExercicio() {
 
 }
 
-
-/* =========================================
-   CADASTRAR EXERCÍCIO
-========================================= */
 
 function cadastrarExercicio() {
 
@@ -153,9 +154,11 @@ function cadastrarExercicio() {
             function(exercicio) {
 
                 return (
+
                     exercicio.toLowerCase()
                     ===
                     nome.toLowerCase()
+
                 );
 
             }
@@ -174,7 +177,9 @@ function cadastrarExercicio() {
     }
 
 
-    exerciciosSemana[dia].push(nome);
+    exerciciosSemana[dia].push(
+        nome
+    );
 
 
     salvarExercicios();
@@ -208,7 +213,7 @@ function cadastrarExercicio() {
 
 
 /* =========================================
-   CARREGAR EXERCÍCIOS DO DIA
+   CARREGAR EXERCÍCIOS
 ========================================= */
 
 function carregarExerciciosDoDia() {
@@ -232,7 +237,9 @@ function carregarExerciciosDoDia() {
         exerciciosSemana[dia];
 
 
-    if (exercicios.length === 0) {
+    if (
+        exercicios.length === 0
+    ) {
 
         const option =
             document.createElement(
@@ -324,19 +331,15 @@ function mostrarUltimoTreino() {
     }
 
 
-    /*
-       Como os novos treinos são adicionados
-       no início do array com unshift(),
-       o primeiro encontrado é o mais recente.
-    */
-
     const ultimoTreino =
         treinos.find(
 
             function(treino) {
 
                 return (
-                    treino.exercicio === exercicio
+                    treino.exercicio
+                    ===
+                    exercicio
                 );
 
             }
@@ -426,7 +429,9 @@ function mostrarUltimoTreino() {
     let horario = "";
 
 
-    if (ultimoTreino.horario) {
+    if (
+        ultimoTreino.horario
+    ) {
 
         horario =
             ` às ${ultimoTreino.horario}`;
@@ -488,7 +493,7 @@ function mostrarUltimoTreino() {
 
 
 /* =========================================
-   SALVAR NOME DO TREINO
+   NOME DO TREINO
 ========================================= */
 
 function salvarNomeTreino() {
@@ -508,12 +513,18 @@ function salvarNomeTreino() {
             .trim();
 
 
-    nomesTreinos[dia] = nome;
+    nomesTreinos[dia] =
+        nome;
 
 
     localStorage.setItem(
+
         "nomesTreinos",
-        JSON.stringify(nomesTreinos)
+
+        JSON.stringify(
+            nomesTreinos
+        )
+
     );
 
 
@@ -536,9 +547,12 @@ function editarExercicio(
     indice
 ) {
 
-    diaEdicao = dia;
+    diaEdicao =
+        dia;
 
-    indiceEdicao = indice;
+
+    indiceEdicao =
+        indice;
 
 
     const nome =
@@ -562,10 +576,6 @@ function editarExercicio(
 }
 
 
-/* =========================================
-   FECHAR EDIÇÃO
-========================================= */
-
 function fecharEdicao() {
 
     document.getElementById(
@@ -579,10 +589,6 @@ function fecharEdicao() {
 
 }
 
-
-/* =========================================
-   SALVAR EDIÇÃO
-========================================= */
 
 function salvarEdicaoExercicio() {
 
@@ -612,7 +618,9 @@ function salvarEdicaoExercicio() {
         ).value;
 
 
-    if (novoNome === "") {
+    if (
+        novoNome === ""
+    ) {
 
         alert(
             "Digite o nome do exercício."
@@ -643,9 +651,11 @@ function salvarEdicaoExercicio() {
 
 
                 return (
+
                     exercicio.toLowerCase()
                     ===
                     novoNome.toLowerCase()
+
                 );
 
             }
@@ -653,7 +663,9 @@ function salvarEdicaoExercicio() {
         );
 
 
-    if (duplicado) {
+    if (
+        duplicado
+    ) {
 
         alert(
             "Já existe um exercício com esse nome nesse dia."
@@ -713,7 +725,9 @@ function excluirExercicio(
         );
 
 
-    if (!confirmar) {
+    if (
+        !confirmar
+    ) {
 
         return;
 
@@ -737,18 +751,221 @@ function excluirExercicio(
 
 
 /* =========================================
-   GERAR SÉRIES
+   SÉRIES
 ========================================= */
 
-function gerarSeries() {
+function criarLinhaSerie() {
 
-    const quantidade =
-        parseInt(
-            document.getElementById(
-                "series"
-            ).value
+    const container =
+        document.getElementById(
+            "camposSeries"
         );
 
+
+    const numero =
+        container.children.length + 1;
+
+
+    const linha =
+        document.createElement(
+            "div"
+        );
+
+
+    linha.className =
+        "linhaSerie";
+
+
+    linha.innerHTML = `
+
+        <div class="numeroSerie">
+
+            Série ${numero}
+
+        </div>
+
+
+        <div class="campoSerie">
+
+            <label>
+                Repetições
+            </label>
+
+            <input
+                type="number"
+                min="1"
+                inputmode="numeric"
+                placeholder="12"
+                class="repeticaoSerie"
+            >
+
+        </div>
+
+
+        <div class="campoSerie">
+
+            <label>
+                Peso (kg)
+            </label>
+
+            <input
+                type="number"
+                min="0"
+                step="0.5"
+                inputmode="decimal"
+                placeholder="30"
+                class="pesoSerie"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btnRemoverSerie"
+            onclick="removerSerie(this)"
+            title="Remover série"
+        >
+            🗑️
+        </button>
+
+    `;
+
+
+    container.appendChild(
+        linha
+    );
+
+
+    atualizarNumeracaoSeries();
+
+}
+
+
+/* =========================================
+   ADICIONAR SÉRIE
+========================================= */
+
+function adicionarSerie() {
+
+    criarLinhaSerie();
+
+
+    /*
+       IMPORTANTE:
+
+       Aqui não recriamos as séries antigas.
+
+       Apenas adicionamos uma nova linha.
+
+       Por isso os pesos e repetições
+       que você já digitou continuam
+       preenchidos.
+    */
+
+}
+
+
+/* =========================================
+   REMOVER SÉRIE
+========================================= */
+
+function removerSerie(
+    botao
+) {
+
+    const container =
+        document.getElementById(
+            "camposSeries"
+        );
+
+
+    if (
+        container.children.length <= 1
+    ) {
+
+        alert(
+            "O treino precisa ter pelo menos 1 série."
+        );
+
+        return;
+
+    }
+
+
+    const linha =
+        botao.closest(
+            ".linhaSerie"
+        );
+
+
+    linha.remove();
+
+
+    atualizarNumeracaoSeries();
+
+}
+
+
+/* =========================================
+   ATUALIZAR NÚMEROS DAS SÉRIES
+========================================= */
+
+function atualizarNumeracaoSeries() {
+
+    const linhas =
+        document.querySelectorAll(
+            ".linhaSerie"
+        );
+
+
+    linhas.forEach(
+
+        function(
+            linha,
+            indice
+        ) {
+
+            linha.querySelector(
+                ".numeroSerie"
+            ).textContent =
+                `Série ${indice + 1}`;
+
+        }
+
+    );
+
+
+    const contador =
+        document.getElementById(
+            "contadorSeries"
+        );
+
+
+    if (
+        linhas.length === 1
+    ) {
+
+        contador.textContent =
+            "1 série";
+
+    }
+
+    else {
+
+        contador.textContent =
+            `${linhas.length} séries`;
+
+    }
+
+}
+
+
+/* =========================================
+   CRIAR 3 SÉRIES INICIAIS
+========================================= */
+
+function criarSeriesIniciais() {
 
     const container =
         document.getElementById(
@@ -759,71 +976,11 @@ function gerarSeries() {
     container.innerHTML = "";
 
 
-    for (
-        let i = 1;
-        i <= quantidade;
-        i++
-    ) {
+    criarLinhaSerie();
 
-        const linha =
-            document.createElement(
-                "div"
-            );
+    criarLinhaSerie();
 
-
-        linha.className =
-            "linhaSerie";
-
-
-        linha.innerHTML = `
-
-            <div class="numeroSerie">
-
-                Série ${i}
-
-            </div>
-
-
-            <div class="campoSerie">
-
-                <label>
-                    Repetições
-                </label>
-
-                <input
-                    type="number"
-                    min="1"
-                    placeholder="12"
-                    class="repeticaoSerie"
-                >
-
-            </div>
-
-
-            <div class="campoSerie">
-
-                <label>
-                    Peso (kg)
-                </label>
-
-                <input
-                    type="number"
-                    min="0"
-                    step="0.5"
-                    placeholder="30"
-                    class="pesoSerie"
-                >
-
-            </div>
-
-        `;
-
-
-        container.appendChild(
-            linha
-        );
-
-    }
+    criarLinhaSerie();
 
 }
 
@@ -846,15 +1003,9 @@ function registrarTreino() {
         ).value;
 
 
-    const quantidadeSeries =
-        parseInt(
-            document.getElementById(
-                "series"
-            ).value
-        );
-
-
-    if (exercicio === "") {
+    if (
+        exercicio === ""
+    ) {
 
         alert(
             "Cadastre um exercício primeiro."
@@ -875,6 +1026,23 @@ function registrarTreino() {
         document.querySelectorAll(
             ".pesoSerie"
         );
+
+
+    const quantidadeSeries =
+        camposRepeticoes.length;
+
+
+    if (
+        quantidadeSeries === 0
+    ) {
+
+        alert(
+            "Adicione pelo menos uma série."
+        );
+
+        return;
+
+    }
 
 
     let repeticoes = [];
@@ -913,7 +1081,7 @@ function registrarTreino() {
         ) {
 
             alert(
-                "Preencha peso e repetições de todas as séries."
+                `Preencha peso e repetições da Série ${i + 1}.`
             );
 
             return;
@@ -957,17 +1125,23 @@ function registrarTreino() {
                 }
             ),
 
-        dia: dia,
+        dia:
+            dia,
 
-        exercicio: exercicio,
+        exercicio:
+            exercicio,
 
-        series: quantidadeSeries,
+        series:
+            quantidadeSeries,
 
-        repeticoes: repeticoes,
+        repeticoes:
+            repeticoes,
 
-        pesos: pesos,
+        pesos:
+            pesos,
 
-        volume: volume
+        volume:
+            volume
 
     };
 
@@ -978,8 +1152,13 @@ function registrarTreino() {
 
 
     localStorage.setItem(
+
         "treinos",
-        JSON.stringify(treinos)
+
+        JSON.stringify(
+            treinos
+        )
+
     );
 
 
@@ -990,11 +1169,16 @@ function registrarTreino() {
 
     atualizarTabela();
 
-
     mostrarUltimoTreino();
 
 
-    limparSeries();
+    /*
+       Depois de registrar,
+       começamos novamente com
+       3 séries vazias.
+    */
+
+    criarSeriesIniciais();
 
 }
 
@@ -1013,7 +1197,8 @@ function mostrarResultado(
         );
 
 
-    let detalhes = "";
+    let detalhes =
+        "";
 
 
     for (
@@ -1051,7 +1236,8 @@ function mostrarResultado(
         );
 
 
-    let mensagem = "";
+    let mensagem =
+        "";
 
 
     if (
@@ -1142,134 +1328,135 @@ function atualizarFichaSemanal() {
         );
 
 
-    ficha.innerHTML = "";
+    ficha.innerHTML =
+        "";
 
 
-    Object.keys(nomesDias)
-        .forEach(
+    Object.keys(
+        nomesDias
+    ).forEach(
 
-            function(dia) {
+        function(dia) {
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "diaSemana";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-                const nomeTreino =
-                    nomesTreinos[dia]
-                    ||
-                    "Treino não definido";
+            card.className =
+                "diaSemana";
 
 
-                let exerciciosHTML = "";
+            const nomeTreino =
+                nomesTreinos[dia]
+                ||
+                "Treino não definido";
 
 
-                if (
-                    exerciciosSemana[dia]
-                        .length === 0
-                ) {
-
-                    exerciciosHTML = `
-
-                        <p class="semHistorico">
-
-                            Nenhum exercício cadastrado.
-
-                        </p>
-
-                    `;
-
-                }
-
-                else {
-
-                    exerciciosSemana[dia]
-                        .forEach(
-
-                            function(
-                                exercicio,
-                                indice
-                            ) {
-
-                                exerciciosHTML += `
-
-                                    <div class="itemExercicio">
+            let exerciciosHTML =
+                "";
 
 
-                                        <span class="nomeExercicioSemana">
+            if (
+                exerciciosSemana[dia]
+                    .length === 0
+            ) {
 
-                                            ${exercicio}
+                exerciciosHTML = `
 
-                                        </span>
+                    <p class="semHistorico">
 
-
-                                        <div class="acoesExercicio">
-
-
-                                            <button
-                                                class="btnEditar"
-                                                onclick="editarExercicio('${dia}', ${indice})"
-                                            >
-
-                                                ✏️ Editar
-
-                                            </button>
-
-
-                                            <button
-                                                class="btnExcluir"
-                                                onclick="excluirExercicio('${dia}', ${indice})"
-                                            >
-
-                                                🗑️
-
-                                            </button>
-
-
-                                        </div>
-
-                                    </div>
-
-                                `;
-
-                            }
-
-                        );
-
-                }
-
-
-                card.innerHTML = `
-
-                    <h3>
-                        ${nomesDias[dia]}
-                    </h3>
-
-
-                    <p class="nomeTreinoSemana">
-
-                        ${nomeTreino}
+                        Nenhum exercício cadastrado.
 
                     </p>
 
-
-                    ${exerciciosHTML}
-
                 `;
-
-
-                ficha.appendChild(
-                    card
-                );
 
             }
 
-        );
+            else {
+
+                exerciciosSemana[dia]
+                    .forEach(
+
+                        function(
+                            exercicio,
+                            indice
+                        ) {
+
+                            exerciciosHTML += `
+
+                                <div class="itemExercicio">
+
+
+                                    <span class="nomeExercicioSemana">
+
+                                        ${exercicio}
+
+                                    </span>
+
+
+                                    <div class="acoesExercicio">
+
+
+                                        <button
+                                            type="button"
+                                            class="btnEditar"
+                                            onclick="editarExercicio('${dia}', ${indice})"
+                                        >
+                                            ✏️ Editar
+                                        </button>
+
+
+                                        <button
+                                            type="button"
+                                            class="btnExcluir"
+                                            onclick="excluirExercicio('${dia}', ${indice})"
+                                        >
+                                            🗑️
+                                        </button>
+
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+
+                    );
+
+            }
+
+
+            card.innerHTML = `
+
+                <h3>
+                    ${nomesDias[dia]}
+                </h3>
+
+
+                <p class="nomeTreinoSemana">
+
+                    ${nomeTreino}
+
+                </p>
+
+
+                ${exerciciosHTML}
+
+            `;
+
+
+            ficha.appendChild(
+                card
+            );
+
+        }
+
+    );
 
 }
 
@@ -1286,7 +1473,8 @@ function atualizarTabela() {
         );
 
 
-    lista.innerHTML = "";
+    lista.innerHTML =
+        "";
 
 
     treinos.forEach(
@@ -1299,7 +1487,8 @@ function atualizarTabela() {
                 );
 
 
-            let detalhes = "";
+            let detalhes =
+                "";
 
 
             if (
@@ -1319,15 +1508,18 @@ function atualizarTabela() {
                 ) {
 
                     detalhes +=
+
                         `${treino.repeticoes[i]} reps × ${treino.pesos[i]} kg`;
 
 
                     if (
-                        i <
+                        i
+                        <
                         treino.repeticoes.length - 1
                     ) {
 
-                        detalhes += "<br>";
+                        detalhes +=
+                            "<br>";
 
                     }
 
@@ -1341,17 +1533,18 @@ function atualizarTabela() {
                     Array.isArray(
                         treino.repeticoes
                     )
-                        ?
-                        treino.repeticoes.join(
-                            " / "
-                        )
-                        :
-                        treino.repeticoes || "-";
+                    ?
+                    treino.repeticoes.join(
+                        " / "
+                    )
+                    :
+                    treino.repeticoes || "-";
 
             }
 
 
-            let volume = "-";
+            let volume =
+                "-";
 
 
             if (
@@ -1413,52 +1606,15 @@ function atualizarTabela() {
 
 
 /* =========================================
-   LIMPAR CAMPOS DAS SÉRIES
-========================================= */
-
-function limparSeries() {
-
-    document
-        .querySelectorAll(
-            ".repeticaoSerie"
-        )
-        .forEach(
-
-            function(input) {
-
-                input.value = "";
-
-            }
-
-        );
-
-
-    document
-        .querySelectorAll(
-            ".pesoSerie"
-        )
-        .forEach(
-
-            function(input) {
-
-                input.value = "";
-
-            }
-
-        );
-
-}
-
-
-/* =========================================
-   BACKUP COMPLETO
+   BACKUP
 ========================================= */
 
 function fazerBackup() {
 
     const backup = {
 
-        versao: 1,
+        versao:
+            2,
 
         dataBackup:
             new Date().toLocaleString(
@@ -1485,76 +1641,17 @@ function fazerBackup() {
         );
 
 
-    const blob =
-        new Blob(
-            [conteudo],
-            {
-                type:
-                    "application/json"
-            }
-        );
+    baixarArquivo(
 
+        conteudo,
 
-    const url =
-        URL.createObjectURL(
-            blob
-        );
+        criarNomeArquivo(
+            "backup_treinos",
+            "json"
+        ),
 
+        "application/json"
 
-    const link =
-        document.createElement(
-            "a"
-        );
-
-
-    const agora =
-        new Date();
-
-
-    const dia =
-        String(
-            agora.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const mes =
-        String(
-            agora.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const ano =
-        agora.getFullYear();
-
-
-    link.href = url;
-
-
-    link.download =
-        `backup_treinos_${dia}-${mes}-${ano}.json`;
-
-
-    document.body.appendChild(
-        link
-    );
-
-
-    link.click();
-
-
-    document.body.removeChild(
-        link
-    );
-
-
-    URL.revokeObjectURL(
-        url
     );
 
 }
@@ -1572,7 +1669,9 @@ function selecionarBackup() {
         );
 
 
-    input.value = "";
+    input.value =
+        "";
+
 
     input.click();
 
@@ -1591,7 +1690,9 @@ function restaurarBackup(
         event.target.files[0];
 
 
-    if (!arquivo) {
+    if (
+        !arquivo
+    ) {
 
         return;
 
@@ -1618,10 +1719,9 @@ function restaurarBackup(
                         backup.treinos
                     )
                     ||
-                    typeof backup.exerciciosSemana
-                    !== "object"
+                    !backup.exerciciosSemana
                     ||
-                    typeof backup.nomesTreinos
+                    typeof backup.exerciciosSemana
                     !== "object"
                 ) {
 
@@ -1644,7 +1744,9 @@ function restaurarBackup(
                     );
 
 
-                if (!confirmar) {
+                if (
+                    !confirmar
+                ) {
 
                     return;
 
@@ -1660,33 +1762,54 @@ function restaurarBackup(
 
 
                 nomesTreinos =
-                    backup.nomesTreinos;
+
+                    backup.nomesTreinos
+                    &&
+                    typeof backup.nomesTreinos
+                    === "object"
+
+                    ?
+
+                    backup.nomesTreinos
+
+                    :
+
+                    {};
 
 
                 prepararDias();
 
 
                 localStorage.setItem(
+
                     "treinos",
+
                     JSON.stringify(
                         treinos
                     )
+
                 );
 
 
                 localStorage.setItem(
+
                     "exerciciosSemana",
+
                     JSON.stringify(
                         exerciciosSemana
                     )
+
                 );
 
 
                 localStorage.setItem(
+
                     "nomesTreinos",
+
                     JSON.stringify(
                         nomesTreinos
                     )
+
                 );
 
 
@@ -1697,6 +1820,8 @@ function restaurarBackup(
                 atualizarTabela();
 
                 mostrarUltimoTreino();
+
+                criarSeriesIniciais();
 
 
                 document.getElementById(
@@ -1711,13 +1836,15 @@ function restaurarBackup(
 
             }
 
-            catch (erro) {
+            catch (
+                erro
+            ) {
 
                 alert(
 
                     "Não foi possível restaurar o arquivo.\n\n" +
 
-                    "Verifique se selecionou o arquivo JSON correto."
+                    "Verifique se selecionou um backup JSON válido."
 
                 );
 
@@ -1734,7 +1861,7 @@ function restaurarBackup(
 
 
 /* =========================================
-   EXPORTAR HISTÓRICO TXT
+   EXPORTAR TXT
 ========================================= */
 
 function exportarHistoricoTXT() {
@@ -1752,7 +1879,8 @@ function exportarHistoricoTXT() {
     }
 
 
-    let texto = "";
+    let texto =
+        "";
 
 
     texto +=
@@ -1790,17 +1918,13 @@ function exportarHistoricoTXT() {
             }
 
 
-            texto += "\n";
+            texto +=
+                "\n";
 
 
             texto +=
                 `Dia: ${nomesDias[treino.dia] || treino.dia || "-"}\n`;
 
-
-            /*
-               O nome atual da ficha é usado
-               somente como informação adicional.
-            */
 
             const nomeTreino =
                 nomesTreinos[
@@ -1836,7 +1960,8 @@ function exportarHistoricoTXT() {
                             i
                         ) {
 
-                            let peso = "-";
+                            let peso =
+                                "-";
 
 
                             if (
@@ -1852,7 +1977,9 @@ function exportarHistoricoTXT() {
 
 
                             texto +=
+
                                 `Série ${i + 1}: ` +
+
                                 `${repeticao} repetições`;
 
 
@@ -1868,7 +1995,8 @@ function exportarHistoricoTXT() {
                             }
 
 
-                            texto += "\n";
+                            texto +=
+                                "\n";
 
                         }
 
@@ -1877,7 +2005,8 @@ function exportarHistoricoTXT() {
             }
 
 
-            texto += "\n";
+            texto +=
+                "\n";
 
 
             if (
@@ -1891,6 +2020,7 @@ function exportarHistoricoTXT() {
             ) {
 
                 texto +=
+
                     `Volume total: ${Number(
                         treino.volume
                     ).toFixed(0)} kg\n`;
@@ -1906,12 +2036,37 @@ function exportarHistoricoTXT() {
     );
 
 
+    baixarArquivo(
+
+        texto,
+
+        criarNomeArquivo(
+            "historico_treinos",
+            "txt"
+        ),
+
+        "text/plain;charset=utf-8"
+
+    );
+
+}
+
+
+/* =========================================
+   FUNÇÃO PARA DOWNLOAD
+========================================= */
+
+function baixarArquivo(
+    conteudo,
+    nomeArquivo,
+    tipo
+) {
+
     const blob =
         new Blob(
-            [texto],
+            [conteudo],
             {
-                type:
-                    "text/plain;charset=utf-8"
+                type: tipo
             }
         );
 
@@ -1927,6 +2082,43 @@ function exportarHistoricoTXT() {
             "a"
         );
 
+
+    link.href =
+        url;
+
+
+    link.download =
+        nomeArquivo;
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =========================================
+   NOME DO ARQUIVO
+========================================= */
+
+function criarNomeArquivo(
+    nome,
+    extensao
+) {
 
     const agora =
         new Date();
@@ -1954,29 +2146,10 @@ function exportarHistoricoTXT() {
         agora.getFullYear();
 
 
-    link.href =
-        url;
+    return (
 
+        `${nome}_${dia}-${mes}-${ano}.${extensao}`
 
-    link.download =
-        `historico_treinos_${dia}-${mes}-${ano}.txt`;
-
-
-    document.body.appendChild(
-        link
-    );
-
-
-    link.click();
-
-
-    document.body.removeChild(
-        link
-    );
-
-
-    URL.revokeObjectURL(
-        url
     );
 
 }
@@ -1998,14 +2171,17 @@ function limparHistorico() {
         );
 
 
-    if (!confirmar) {
+    if (
+        !confirmar
+    ) {
 
         return;
 
     }
 
 
-    treinos = [];
+    treinos =
+        [];
 
 
     localStorage.removeItem(
@@ -2027,12 +2203,12 @@ function limparHistorico() {
 
 
 /* =========================================
-   INICIAR
+   INICIAR APLICATIVO
 ========================================= */
 
 carregarExerciciosDoDia();
 
-gerarSeries();
+criarSeriesIniciais();
 
 atualizarFichaSemanal();
 

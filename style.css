@@ -6,38 +6,24 @@
 
 
 body {
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
     background: #111827;
-
     color: white;
-
     min-height: 100vh;
 }
 
 
 .container {
-
     width: 92%;
-
     max-width: 950px;
-
     margin: auto;
-
     padding: 35px 0;
 }
 
 
 h1 {
-
     text-align: center;
-
     font-size: 36px;
-
     margin-bottom: 10px;
 }
 
@@ -53,21 +39,15 @@ h3 {
 
 
 .subtitulo {
-
     text-align: center;
-
     color: #9ca3af;
-
     margin-bottom: 30px;
 }
 
 
 .textoAjuda {
-
     color: #9ca3af;
-
     margin-bottom: 20px;
-
     line-height: 1.5;
 }
 
@@ -78,13 +58,9 @@ h3 {
 
 .card,
 .historico {
-
     background: #1f2937;
-
     padding: 25px;
-
     border-radius: 12px;
-
     margin-bottom: 25px;
 }
 
@@ -94,41 +70,28 @@ h3 {
 ========================= */
 
 label {
-
     display: block;
-
     margin-top: 15px;
-
     margin-bottom: 6px;
-
     font-weight: bold;
 }
 
 
 input,
 select {
-
     width: 100%;
-
     padding: 12px;
-
     border: 1px solid #374151;
-
     border-radius: 7px;
-
     background: #111827;
-
     color: white;
-
     font-size: 16px;
 }
 
 
 input:focus,
 select:focus {
-
     outline: none;
-
     border-color: #22c55e;
 }
 
@@ -138,95 +101,65 @@ select:focus {
 ========================= */
 
 button {
-
     border: none;
-
     border-radius: 7px;
-
     background: #22c55e;
-
     color: white;
-
     font-weight: bold;
-
     font-size: 15px;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
 
 button:hover {
-
     opacity: 0.85;
-
-    transform: translateY(-1px);
 }
 
 
 .btnRegistrar {
-
     width: 100%;
-
     padding: 15px;
-
     margin-top: 25px;
 }
 
 
 .btnAzul {
-
     width: 100%;
-
     padding: 12px;
-
     margin-top: 10px;
-
     background: #2563eb;
 }
 
 
 .btnNovo {
-
     padding: 12px 18px;
-
     white-space: nowrap;
 }
 
 
 .btnEditar {
-
     background: #2563eb;
-
     padding: 8px 12px;
 }
 
 
 .btnExcluir {
-
     background: #dc2626;
-
     padding: 8px 12px;
 }
 
 
 .btnCancelar {
-
     width: 100%;
-
     padding: 12px;
-
     margin-top: 10px;
-
     background: #6b7280;
 }
 
 
 .btnLimpar {
-
     padding: 10px 15px;
-
     background: #dc2626;
 }
 
@@ -236,16 +169,77 @@ button:hover {
 ========================= */
 
 .linha-exercicio {
-
     display: flex;
-
     gap: 10px;
 }
 
 
 .linha-exercicio select {
-
     flex: 1;
+}
+
+
+/* =========================
+   ÚLTIMO TREINO
+========================= */
+
+.ultimoTreino {
+    margin-top: 15px;
+    padding: 16px;
+
+    background: #111827;
+
+    border: 1px solid #374151;
+    border-left: 4px solid #2563eb;
+
+    border-radius: 8px;
+}
+
+
+.ultimoTreinoTitulo {
+    color: #60a5fa;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+
+.ultimoTreinoData {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+
+.ultimoTreinoSerie {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid #374151;
+}
+
+
+.ultimoTreinoSerie:last-child {
+    border-bottom: none;
+}
+
+
+.ultimoTreinoVolume {
+    margin-top: 12px;
+    padding-top: 10px;
+
+    border-top: 1px solid #374151;
+
+    color: #d1d5db;
+}
+
+
+.semHistorico {
+    color: #9ca3af;
+    font-size: 14px;
 }
 
 
@@ -254,13 +248,11 @@ button:hover {
 ========================= */
 
 .caixaEdicao {
-
     display: none;
 
     background: #111827;
 
     padding: 20px;
-
     margin-top: 20px;
 
     border-radius: 8px;
@@ -270,11 +262,8 @@ button:hover {
 
 
 .caixaEdicao button {
-
     width: 100%;
-
     padding: 12px;
-
     margin-top: 15px;
 }
 
@@ -284,7 +273,6 @@ button:hover {
 ========================= */
 
 .linhaSerie {
-
     display: grid;
 
     grid-template-columns:
@@ -300,29 +288,22 @@ button:hover {
 
     background: #111827;
 
-    border:
-        1px solid #374151;
+    border: 1px solid #374151;
 
     border-radius: 8px;
 }
 
 
 .numeroSerie {
-
     color: #22c55e;
-
     font-weight: bold;
-
     padding-bottom: 12px;
 }
 
 
 .campoSerie label {
-
     margin-top: 0;
-
     color: #d1d5db;
-
     font-size: 14px;
 }
 
@@ -332,13 +313,11 @@ button:hover {
 ========================= */
 
 .resultado {
-
     display: none;
 
     background: #1f2937;
 
-    border-left:
-        5px solid #22c55e;
+    border-left: 5px solid #22c55e;
 
     padding: 20px;
 
@@ -349,7 +328,6 @@ button:hover {
 
 
 .resultado h3 {
-
     color: #22c55e;
 }
 
@@ -359,11 +337,9 @@ button:hover {
 ========================= */
 
 .diaSemana {
-
     background: #111827;
 
-    border:
-        1px solid #374151;
+    border: 1px solid #374151;
 
     border-radius: 10px;
 
@@ -374,19 +350,15 @@ button:hover {
 
 
 .diaSemana h3 {
-
     color: #22c55e;
-
     margin: 0;
 }
 
 
 .nomeTreinoSemana {
-
     color: #9ca3af;
 
     margin-top: 5px;
-
     margin-bottom: 15px;
 
     font-weight: bold;
@@ -394,11 +366,9 @@ button:hover {
 
 
 .itemExercicio {
-
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
@@ -406,27 +376,22 @@ button:hover {
 
     padding: 10px 0;
 
-    border-bottom:
-        1px solid #374151;
+    border-bottom: 1px solid #374151;
 }
 
 
 .itemExercicio:last-child {
-
     border-bottom: none;
 }
 
 
 .nomeExercicioSemana {
-
     flex: 1;
 }
 
 
 .acoesExercicio {
-
     display: flex;
-
     gap: 7px;
 }
 
@@ -436,7 +401,6 @@ button:hover {
 ========================= */
 
 .botoesBackup {
-
     display: grid;
 
     grid-template-columns:
@@ -447,33 +411,27 @@ button:hover {
 
 
 .botoesBackup button {
-
     padding: 14px;
-
     min-height: 55px;
 }
 
 
 .btnBackup {
-
     background: #22c55e;
 }
 
 
 .btnRestaurar {
-
     background: #2563eb;
 }
 
 
 .btnTxt {
-
     background: #7c3aed;
 }
 
 
 .avisoBackup {
-
     margin-top: 18px;
 
     padding: 12px;
@@ -495,7 +453,6 @@ button:hover {
 ========================= */
 
 .modal {
-
     display: none;
 
     position: fixed;
@@ -503,18 +460,14 @@ button:hover {
     z-index: 1000;
 
     left: 0;
-
     top: 0;
 
     width: 100%;
-
     height: 100%;
 
-    background:
-        rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.75);
 
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
@@ -522,9 +475,7 @@ button:hover {
 
 
 .modalConteudo {
-
     width: 100%;
-
     max-width: 500px;
 
     background: #1f2937;
@@ -535,13 +486,9 @@ button:hover {
 }
 
 
-.modalConteudo
-button:not(.btnCancelar) {
-
+.modalConteudo button:not(.btnCancelar) {
     width: 100%;
-
     padding: 12px;
-
     margin-top: 20px;
 }
 
@@ -551,11 +498,9 @@ button:not(.btnCancelar) {
 ========================= */
 
 .tituloHistorico {
-
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
@@ -566,39 +511,32 @@ button:not(.btnCancelar) {
 
 
 .tituloHistorico h2 {
-
     margin: 0;
 }
 
 
 .tabelaContainer {
-
     overflow-x: auto;
 }
 
 
 table {
-
     width: 100%;
-
     border-collapse: collapse;
 }
 
 
 th,
 td {
-
     padding: 12px;
 
     text-align: center;
 
-    border-bottom:
-        1px solid #374151;
+    border-bottom: 1px solid #374151;
 }
 
 
 th {
-
     color: #22c55e;
 }
 
@@ -610,42 +548,34 @@ th {
 @media (max-width: 600px) {
 
     .container {
-
         width: 94%;
-
         padding: 20px 0;
     }
 
 
     h1 {
-
         font-size: 27px;
     }
 
 
     .card,
     .historico {
-
         padding: 18px;
     }
 
 
     .linha-exercicio {
-
         display: block;
     }
 
 
     .btnNovo {
-
         width: 100%;
-
         margin-top: 10px;
     }
 
 
     .linhaSerie {
-
         grid-template-columns:
             60px 1fr 1fr;
 
@@ -656,54 +586,49 @@ th {
 
 
     .numeroSerie {
-
         font-size: 13px;
     }
 
 
     .campoSerie label {
-
         font-size: 12px;
     }
 
 
-    .itemExercicio {
+    .ultimoTreinoSerie {
+        font-size: 14px;
+    }
 
+
+    .itemExercicio {
         align-items: flex-start;
     }
 
 
     .acoesExercicio {
-
         flex-direction: column;
     }
 
 
     .btnEditar,
     .btnExcluir {
-
         font-size: 12px;
-
         padding: 7px 9px;
     }
 
 
     .botoesBackup {
-
         grid-template-columns: 1fr;
     }
 
 
     .tituloHistorico {
-
         display: block;
     }
 
 
     .btnLimpar {
-
         width: 100%;
-
         margin-top: 15px;
     }
 

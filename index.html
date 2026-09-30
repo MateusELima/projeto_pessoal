@@ -7,7 +7,7 @@
 
     <title>Progressão de Carga</title>
 
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
@@ -36,7 +36,6 @@
             id="diaTreino"
             onchange="carregarExerciciosDoDia()"
         >
-
             <option value="segunda">Segunda-feira</option>
             <option value="terca">Terça-feira</option>
             <option value="quarta">Quarta-feira</option>
@@ -44,7 +43,6 @@
             <option value="sexta">Sexta-feira</option>
             <option value="sabado">Sábado</option>
             <option value="domingo">Domingo</option>
-
         </select>
 
 
@@ -69,10 +67,13 @@
 
         <label>Exercício</label>
 
-
         <div class="linha-exercicio">
 
-            <select id="exercicio"></select>
+            <select
+                id="exercicio"
+                onchange="mostrarUltimoTreino()"
+            ></select>
+
 
             <button
                 class="btnNovo"
@@ -80,6 +81,26 @@
             >
                 + Novo
             </button>
+
+        </div>
+
+
+        <!-- ÚLTIMO TREINO -->
+
+        <div
+            id="ultimoTreino"
+            class="ultimoTreino"
+        >
+
+            <div class="ultimoTreinoTitulo">
+                🕘 Último treino
+            </div>
+
+            <div id="conteudoUltimoTreino">
+
+                Selecione um exercício.
+
+            </div>
 
         </div>
 
@@ -133,14 +154,12 @@
             id="series"
             onchange="gerarSeries()"
         >
-
             <option value="1">1 série</option>
             <option value="2">2 séries</option>
             <option value="3" selected>3 séries</option>
             <option value="4">4 séries</option>
             <option value="5">5 séries</option>
             <option value="6">6 séries</option>
-
         </select>
 
 
@@ -226,8 +245,6 @@
         </div>
 
 
-        <!-- Campo escondido para selecionar JSON -->
-
         <input
             type="file"
             id="arquivoBackup"
@@ -238,15 +255,15 @@
 
 
         <p class="avisoBackup">
-            O arquivo JSON permite restaurar seus dados.
-            O TXT serve apenas para visualizar seu histórico.
+            O arquivo JSON permite restaurar todos os dados.
+            O TXT serve para visualizar seu histórico.
         </p>
 
     </div>
 
 
     <!-- =========================
-         MODAL EDITAR EXERCÍCIO
+         EDITAR EXERCÍCIO
     ========================== -->
 
     <div
@@ -327,21 +344,12 @@
                 <thead>
 
                     <tr>
-
                         <th>Data</th>
-
                         <th>Dia</th>
-
                         <th>Exercício</th>
-
                         <th>Séries</th>
-
-                        <th>
-                            Repetições / Peso
-                        </th>
-
+                        <th>Repetições / Peso</th>
                         <th>Volume</th>
-
                     </tr>
 
                 </thead>
@@ -358,7 +366,7 @@
 </div>
 
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 
 </body>
 
